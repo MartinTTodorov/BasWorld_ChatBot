@@ -1,8 +1,9 @@
 package com.code_of_duty.bas_chat_bot.business.impl;
 
-import com.code_of_duty.bas_chat_bot.business.CreateUserUseCase;
+import com.code_of_duty.bas_chat_bot.business.UserService;
 import com.code_of_duty.bas_chat_bot.domain.CreateUserRequest;
 import com.code_of_duty.bas_chat_bot.domain.CreateUserResponse;
+import com.code_of_duty.bas_chat_bot.domain.User;
 import com.code_of_duty.bas_chat_bot.repository.UserRepository;
 import com.code_of_duty.bas_chat_bot.repository.entity.UserEntity;
 import lombok.AllArgsConstructor;
@@ -12,7 +13,7 @@ import java.util.Random;
 
 @Service
 @AllArgsConstructor
-public class CreateUserUseCaseImpl implements CreateUserUseCase {
+public class UserServiceImpl implements UserService {
     UserRepository userRepository;
     @Override
     public CreateUserResponse createUser(CreateUserRequest request) {
@@ -33,6 +34,12 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
                 .userId(savedUser.getId())
                 .build();
     }
+
+    @Override
+    public User getUser(String email, String password) {
+        return userRepository.findByEmailAndPassword(email, password);
+    }
+
     //Check later
     private UserEntity save(UserEntity user){
          return userRepository.save(user);
