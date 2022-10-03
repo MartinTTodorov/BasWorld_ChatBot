@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.7.4'
     id 'io.spring.dependency-management' version '1.0.14.RELEASE'
     id 'java'
+    //id 'org.flywaydb.flyway' version '6.4.3'
 }
 
 group = 'com.code_of_duty'
@@ -13,6 +14,8 @@ repositories {
 }
 
 dependencies {
+    //implementation group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
+ 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'

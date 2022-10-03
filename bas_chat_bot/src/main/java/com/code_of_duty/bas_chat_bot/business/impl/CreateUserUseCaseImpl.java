@@ -35,13 +35,13 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
     }
     //Check later
     private UserEntity save(UserEntity user){
-        userRepository.save(user);
-        return UserEntity.builder().id(user.getId())
-                .name(user.getName())
-                .lastName(user.getLastName())
-                .CompanyName(user.getCompanyName())
-                .email(user.getEmail())
-                .password(user.getPassword())
-                .build();
+         return userRepository.save(user);
+//        return UserEntity.builder().id(user.getId())
+//                .name(user.getName())
+//                .lastName(user.getLastName())
+//                .CompanyName(user.getCompanyName())
+//                .email(user.getEmail())
+//                .password(user.getPassword())
+//                .build();
     }
 }

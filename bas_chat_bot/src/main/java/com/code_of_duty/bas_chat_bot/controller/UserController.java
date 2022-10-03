@@ -22,11 +22,10 @@ public class UserController {
     private final CreateUserUseCase createUserUseCase;
 
     @PostMapping("/save")
-    public ResponseEntity<CreateUserResponse> createUser(
-            @RequestBody @Valid CreateUserRequest createUserRequest) {
+    public ResponseEntity<CreateUserResponse> createUser( @RequestBody @Valid CreateUserRequest createUserRequest) {
         CreateUserResponse response = createUserUseCase.createUser(createUserRequest);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        return  ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping("/abc")
