@@ -1,73 +1,84 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 
-import axios from "axios";
-import userBusiness from "./services/userBusiness";
-import ReactDOM from "react-dom";
+// import axios from "axios";
+// import userBusiness from "./services/userBusiness";
+// import ReactDOM from "react-dom";
 
-import "./styles.css";
+// import "./styles.css";
 
-function App() {
+// function App() {
 
-    const [isSubmitted, setIsSubmitted] = useState(false);
+//     const [isSubmitted, setIsSubmitted] = useState(false);
 
-    const [data, setData] = useState({
-        name:"",
-        lastName:"",
-        companyName:"",
-        email:"",
-        password:""
-    });
+//     const [data, setData] = useState({
+//         name:"",
+//         lastName:"",
+//         companyName:"",
+//         email:"",
+//         password:""
+//     });
     
 
-    const handleSubmit = (e) => {
+//     const handleSubmit = (e) => {
 
-        e.preventDefault();
+//         e.preventDefault();
        
-     axios.post("http://localhost:8080/user/save",data).then(res=> console.log(res.data)) 
+//      axios.post("http://localhost:8080/user/save",data).then(res=> console.log(res.data)) 
 
-    };
+//     };
 
 
-    // JSX code for login form
-    const renderForm = (
-        <div className="form">
-            <form onSubmit={handleSubmit}>
-                <div className="input-container">
-                    <label>Name </label>
-                    {/*<input type="text" value={data.name}  onChange={(e) => (data=>data.name).setData(e.target.value)} required />*/}
-                    <input type="text" value={data.name}  onChange={(e)=>setData(prevState => ({...prevState,name: e.target.value}))} required />
-                </div>
-                <div className="input-container">
-                    <label>Last Name </label>
-                    <input type="text" value={data.lastName}  onChange={(e)=>setData(prevState => ({...prevState,lastName: e.target.value}))} required />
-                </div>
-                <div className="input-container">
-                    <label>Company Name </label>
-                    <input type="text" value={data.companyName}  onChange={(e)=>setData(prevState => ({...prevState,companyName: e.target.value}))} required />
-                </div>
-                <div className="input-container">
-                    <label>Email</label>
-                    <input type="text" value={data.email}  onChange={(e)=>setData(prevState => ({...prevState,email: e.target.value}))} required />
-                </div>
-                <div className="input-container">
-                    <label>Password </label>
-                    <input type="text" value={data.password}  onChange={(e)=>setData(prevState => ({...prevState,password: e.target.value}))} required />
-                </div>
-                <div className="button-container">
-                    <input type="submit" />
-                </div>
-            </form>
-        </div>
-    );
+//     // JSX code for login form
+//     const renderForm = (
+//         <div className="form">
+//             <form onSubmit={handleSubmit}>
+//                 <div className="input-container">
+//                     <label>Name </label>
+//                     {/*<input type="text" value={data.name}  onChange={(e) => (data=>data.name).setData(e.target.value)} required />*/}
+//                     <input type="text" value={data.name}  onChange={(e)=>setData(prevState => ({...prevState,name: e.target.value}))} required />
+//                 </div>
+//                 <div className="input-container">
+//                     <label>Last Name </label>
+//                     <input type="text" value={data.lastName}  onChange={(e)=>setData(prevState => ({...prevState,lastName: e.target.value}))} required />
+//                 </div>
+//                 <div className="input-container">
+//                     <label>Company Name </label>
+//                     <input type="text" value={data.companyName}  onChange={(e)=>setData(prevState => ({...prevState,companyName: e.target.value}))} required />
+//                 </div>
+//                 <div className="input-container">
+//                     <label>Email</label>
+//                     <input type="text" value={data.email}  onChange={(e)=>setData(prevState => ({...prevState,email: e.target.value}))} required />
+//                 </div>
+//                 <div className="input-container">
+//                     <label>Password </label>
+//                     <input type="text" value={data.password}  onChange={(e)=>setData(prevState => ({...prevState,password: e.target.value}))} required />
+//                 </div>
+//                 <div className="button-container">
+//                     <input type="submit" />
+//                 </div>
+//             </form>
+//         </div>
+//     );
 
-    return (
-        <div className="app">
-            <div className="login-form">
-                <div className="title">Sign Up</div>
-                {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
-            </div>
+//     return (
+//         <div className="app">
+//             <div className="login-form">
+//                 <div className="title">Sign Up</div>
+//                 {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
+//             </div>
+//         </div>
+//     );
+// }
+
+// export default App;
+
+import React from "react";
+import Signup from "./pages/signup";
+function App (){
+    return(
+        <div>
+            <Signup/>
         </div>
     );
 }
-
 export default App;
