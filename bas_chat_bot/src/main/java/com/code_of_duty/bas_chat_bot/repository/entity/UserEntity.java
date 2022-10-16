@@ -17,6 +17,7 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 public class UserEntity {
     @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
