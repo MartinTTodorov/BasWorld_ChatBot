@@ -2,25 +2,28 @@ import React from "react";
 import {
     BrowserRouter as Router,
     Routes,
-    Route
+    Route,
+    BrowserRouter
   } from "react-router-dom";
+import NavBar from "./components/Navbar";
 import Login from "./pages/login";
 import MainPage from "./pages/mainpage";
 import Signup from "./pages/signup"
+import './App.css'
 
 
 function App (){
     return(
-
-      <div>
-          <Router>             
+<BrowserRouter>
+      <div className="App">
+        <NavBar />
                 <Routes>
                   <Route path="/signup" element={<Signup/>}/>
                   <Route path="/login" element={<Login/>}/>
                   <Route path="/" element={<MainPage/>}/>
                 </Routes>              
-            </Router>
-      </div>          
+      </div>  
+      </BrowserRouter>        
           );
 }
 export default App;
