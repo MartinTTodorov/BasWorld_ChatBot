@@ -8,7 +8,8 @@ import {
 import NavBar from "./components/Navbar";
 import Login from "./pages/login";
 import MainPage from "./pages/mainpage";
-import Signup from "./pages/signup"
+import Signup from "./pages/signup";
+import Chatbot from "./pages/chatbot";
 import './App.css'
 
 
@@ -21,6 +22,7 @@ function App (){
                   <Route path="/signup" element={<Signup/>}/>
                   <Route path="/login" element={<Login/>}/>
                   <Route path="/" element={<MainPage/>}/>
+                  <Route path="/chatbot" element={<Chatbot/>}/>
                 </Routes>              
       </div>  
       </BrowserRouter>        

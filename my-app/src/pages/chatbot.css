@@ -1,0 +1,12 @@
+.Chatbot {
+    text-align: center;
+    background-color: aqua;
+    min-height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: block;
+    border: 2px solid #dedede;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
