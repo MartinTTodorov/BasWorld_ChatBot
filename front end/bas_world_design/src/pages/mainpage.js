@@ -1,8 +1,16 @@
 import React from "react";
 import logo from './logo.svg';
 import './App.css';
+import Greeter from "../Greeter";
+
+
+
 const MainPage=()=>{
+
+
+
     return(
+
         <div className="App">
             <header className="App-header">
                 <input className="SearchBar" type="text"></input>
@@ -26,6 +34,8 @@ const MainPage=()=>{
                     </div>
                 </div>
             </header>
+            <Greeter/>
+
 
         </div>
     );    

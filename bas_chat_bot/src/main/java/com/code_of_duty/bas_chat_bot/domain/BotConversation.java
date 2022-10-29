@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class BotConversation {
     private List<MessageLine> messages;
-
+    private User user;
 
     //For encapsulation, I think last semester they told us to put those here, instead of in the manager and then have a method in the manager
     private void AddMessage(MessageLine message){

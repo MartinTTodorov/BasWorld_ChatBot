@@ -108,3 +108,22 @@
     display: inline-block;
 }
 
+.convo{
+    background-color: lawngreen;
+    height: 600px;
+    width: auto;
+
+}
+
+.input{
+    width: 300px;
+}
+
+.chatbot{
+    float: right;
+}
+
+.send{
+    color: black;
+    background-color: coral;
+}

@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 
     //Check later
     private UserEntity save(UserEntity user){
-         return userRepository.save(user);
+         //return userRepository.save(user);
 //        return UserEntity.builder().id(user.getId())
 //                .name(user.getName())
 //                .lastName(user.getLastName())
@@ -50,5 +50,6 @@ public class UserServiceImpl implements UserService {
 //                .email(user.getEmail())
 //                .password(user.getPassword())
 //                .build();
+        return null;
     }
 }

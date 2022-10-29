@@ -17,6 +17,7 @@ import javax.validation.Valid;
 @CrossOrigin("http://localhost:3000")
 public class UserController {
     private final UserService service;
+    private boolean isLoggedIn = false;
 
     @PostMapping("/save")
     public ResponseEntity<CreateUserResponse> createUser(@RequestBody @Valid CreateUserRequest createUserRequest) {
@@ -28,6 +29,7 @@ public class UserController {
     @GetMapping()
     public String getUser(String email, String password) {
         if (service.getUser(email, password) != null) {
+            isLoggedIn = true;
             return "Successful log in";
         }
         return "Try again later";
