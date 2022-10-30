@@ -17,9 +17,8 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
     @Override
     public CreateUserResponse createUser(CreateUserRequest request) {
-        Random rand = new Random();
+
         UserEntity newUser = UserEntity.builder()
-                .id(Long.valueOf(rand.nextInt(1000000000)))
                 .name(request.getName())
                 .lastName(request.getLastName())
                 .CompanyName(request.getCompanyName())
@@ -35,20 +34,17 @@ public class UserServiceImpl implements UserService {
                 .build();
     }
 
+<<<<<<< HEAD:bas_chat_bot/src/main/java/com/code_of_duty/bas_chat_bot/business/impl/UserServiceImpl.java
     @Override
     public User getUser(String email, String password) {
         return userRepository.findByEmailAndPassword(email, password);
     }
 
     //Check later
+=======
+>>>>>>> servet:bas_chat_bot/src/main/java/com/code_of_duty/bas_chat_bot/business/impl/CreateUserUseCaseImpl.java
     private UserEntity save(UserEntity user){
          return userRepository.save(user);
-//        return UserEntity.builder().id(user.getId())
-//                .name(user.getName())
-//                .lastName(user.getLastName())
-//                .CompanyName(user.getCompanyName())
-//                .email(user.getEmail())
-//                .password(user.getPassword())
-//                .build();
+//
     }
 }
