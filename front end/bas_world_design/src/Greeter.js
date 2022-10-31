@@ -1,12 +1,10 @@
 import React, {useState, useEffect} from "react";
-import axios from "axios";
 import newMessage from "./NewMessage";
 import "./Greeter.css"
-import Chatbot from "react-chatbot-kit";
 
 
-const Greeter = () => {
-    const [message, setMessage] = useState("Hello, how can I help you today?");
+const Greeter = (data) => {
+    const [message, setMessage] = useState(`Hello ${greeter(data.username)}, how can I help you today?`);
     const [display, setDisplay] = useState(false);
 
 
@@ -16,8 +14,16 @@ const Greeter = () => {
     // }
 
     const greet = (e) => {
-        setMessage("Hello, how can I help you today?")
+        setMessage(`Hello ${data.username}, how can I help you today?`)
     }
+
+    function greeter (username)  {
+        if (username == undefined){
+            return "";
+        }
+        return username;
+    }
+
 
     const addMessageToState = (messages) => {
     };

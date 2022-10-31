@@ -2,6 +2,7 @@ import React from "react";
 import logo from './logo.svg';
 import './App.css';
 import Greeter from "../Greeter";
+import login from "./login";
 
 
 
@@ -35,7 +36,7 @@ const MainPage=()=>{
                     </div>
                 </div>
             </header>
-            <Greeter/>
+            <Greeter data = {login}/>
 
 
         </div>
