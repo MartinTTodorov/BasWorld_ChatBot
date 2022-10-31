@@ -14,7 +14,8 @@ const MainPage=()=>{
         <div className="App">
             <header className="App-header">
                 <input className="SearchBar" type="text"></input>
-                <div className="LogIn">Login</div>
+
+
                 <div className="header">
                     <div className="categories">Vehicle categories</div>
                     <div className="contact">Contact</div>
