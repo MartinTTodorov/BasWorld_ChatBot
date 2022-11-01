@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import newMessage from "./NewMessage";
-import "./Greeter.css"
+import "./Greeter.css";
+
 
 
 const Greeter = (data) => {

@@ -7,7 +7,7 @@ const Login=()=> {
     const [result, setResult] = useState(false);
 
     const [data, setData] = useState({
-        username:"",
+        name:"",
         password:""
     });
 
@@ -17,8 +17,7 @@ const Login=()=> {
 
         e.preventDefault();
        
-     await axios.post("http://localhost:8080/user/login",data).then(result =>console.log(result));     
-
+     await axios.post("http://localhost:8080/user/login",data).then(result =>console.log(result));
     };
 
 

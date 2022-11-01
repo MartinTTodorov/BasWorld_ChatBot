@@ -1,9 +1,6 @@
 package com.code_of_duty.bas_chat_bot.repository.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -15,9 +12,11 @@ import javax.validation.constraints.NotBlank;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class UserEntity {
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
     @NotBlank
