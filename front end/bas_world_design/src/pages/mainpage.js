@@ -2,11 +2,16 @@ import React from "react";
 import logo from './logo.svg';
 import './App.css';
 import Greeter from "../Greeter";
+<<<<<<< HEAD
 import { NavLink } from "react-router-dom";
+=======
+import login from "./login";
+>>>>>>> b584a4f0df5a4e946aa4553c055422b8d61be078
 
 
 
-const MainPage=()=>{
+
+const MainPage=({user})=>{
 
 
 
@@ -15,7 +20,12 @@ const MainPage=()=>{
         <div className="App">
             <header className="App-header">
                 <input className="SearchBar" type="text"></input>
+<<<<<<< HEAD
                 <div className="LogIn"><NavLink to="/login" aria-current="page">Login</NavLink></div>
+=======
+
+
+>>>>>>> b584a4f0df5a4e946aa4553c055422b8d61be078
                 <div className="header">
                     <div className="categories">Vehicle categories</div>
                     <div className="contact">Contact</div>
@@ -35,7 +45,7 @@ const MainPage=()=>{
                     </div>
                 </div>
             </header>
-            <Greeter/>
+            <Greeter user = {user}/>
 
 
         </div>

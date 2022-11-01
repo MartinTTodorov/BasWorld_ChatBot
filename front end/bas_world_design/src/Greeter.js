@@ -1,11 +1,16 @@
 import React, {useState} from "react";
 import axios from "axios";
 import {useEffect} from ".";
-import "./Greeter.css"
+import "./Greeter.css";
+import ChatBot from 'react-simple-chatbot';
 
-const Greeter = () => {
-    const [message, setMessage] = useState("");
+
+
+const Greeter = ({user}) => {
+    const [message, setMessage] = useState(`Hello ${greeter(user)}, how can I help you today?`);
     const [display, setDisplay] = useState(false);
+    
+
 
     // const saveMessage = (e) => {
     //     e.preventDefault();
@@ -13,15 +18,68 @@ const Greeter = () => {
     // }
 
     const greet = (e) => {
-        setMessage("Hello, how can I help you today?")
+        setMessage(`Hello ${user}, how can I help you today?`)
     }
+
+    function greeter (username)  {
+        if (username == undefined){
+            return "";
+        }
+        return username;
+    }
+
 
     const addMessageToState = (messages) => {
     };
 
-    function displayChat(){
+    function displayChat() {
         setDisplay(!display);
     }
+
+
+    const steps = [
+        {
+            id: '0',
+            message:'Hello! Welcome to Bas World',
+            trigger: '1',
+        },
+        {
+            id: '1',
+            user: true,
+            trigger: '2',
+        },
+        {
+            id: '2',
+            user: true,
+            trigger: '3'
+        },
+        {
+            id: '3',
+            user: true,
+            trigger: '4'
+        },
+        {
+            id: '4',
+            user: true,
+            trigger: '5'
+        },
+        {
+            id: '5',
+            user: true,
+            trigger: '6'
+        },
+        {
+            id: '6',
+            user: true,
+            trigger: '7'
+        },
+        {
+            id: '7',
+            user: true,
+            end: true
+        }
+    ];
+    
 
     return (
         // <div className="chatbot">
@@ -32,48 +90,13 @@ const Greeter = () => {
         // </div>
         <>
             <div className="chat-container">
-            <section className={display ? "coversation chatbox" : "normal-coversation"}>
-		        <section className="chat-window">
-			        <article className="msg-container msg-remote" id="msg-0">
-                        <div className="msg-box">
-                            <img className="user-img" id="user-0" src="//gravatar.com/avatar/00034587632094500000000000000000?d=retro" />
-                            <div className="flr">
-                                <div className="messages">
-                                    <p className="msg" id="msg-0">
-                                        Hello, how can I help you today?
-                                    </p>
-                                </div>
-                                <span className="timestamp"><span className="username">Name</span>&bull;<span className="posttime">3 minutes ago</span></span>
-                            </div>
-                        </div>
-			        </article>
-                    <article className="msg-container msg-self" id="msg-0">
-                        <div className="msg-box">
-                            <div className="flr">
-                                <div className="messages">
-                                    <p className="msg" id="msg-1">
-                                        Hello, I need help with my order
-                                    </p>
-                                    <p className="msg" id="msg-2">
-                                        Praesent varius
-                                    </p>
-                                </div>
-                                <span className="timestamp"><span className="username">Name</span>&bull;<span className="posttime">2 minutes ago</span></span>
-                            </div>
-                            <img className="user-img" id="user-0" src="//gravatar.com/avatar/56234674574535734573000000000001?d=retro" />
-                        </div>
-                    </article>
-		        </section>
-                <form className="chat-input">
-                    <input type="text" autocomplete="on" placeholder="Type a message" />
-                    <button>
-                        <svg viewBox="0 0 24 24"><path fill="rgba(0,0,0,.38)" d="M17,12L12,17V14H8V10H12V7L17,12M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5M12,4.15L5,8.09V15.91L12,19.85L19,15.91V8.09L12,4.15Z" /></svg>
-                    </button>
-                </form>
-	        </section>
-            <button className="popButton" onClick={displayChat}>{display ? "Close" :"Start a chat"}</button>
+                <segment className={display ? "coversation chatbox" : "normal-coversation"}>
+                    <ChatBot steps={steps}/>
+                </segment>
+                <button className="popButton" onClick={displayChat}>{display ? "Close" :"Start a chat"}</button>
             </div>
         </>
+
     );
 
 
