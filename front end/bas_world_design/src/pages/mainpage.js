@@ -2,10 +2,12 @@ import React from "react";
 import logo from './logo.svg';
 import './App.css';
 import Greeter from "../Greeter";
+import login from "./login";
 
 
 
-const MainPage=()=>{
+
+const MainPage=({user})=>{
 
 
 
@@ -14,7 +16,8 @@ const MainPage=()=>{
         <div className="App">
             <header className="App-header">
                 <input className="SearchBar" type="text"></input>
-                <div className="LogIn">Login</div>
+
+
                 <div className="header">
                     <div className="categories">Vehicle categories</div>
                     <div className="contact">Contact</div>
@@ -34,7 +37,7 @@ const MainPage=()=>{
                     </div>
                 </div>
             </header>
-            <Greeter/>
+            <Greeter user = {user}/>
 
 
         </div>

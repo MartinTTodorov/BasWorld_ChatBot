@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import axios from "axios";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Link
+  } from "react-router-dom";
 import "./styles.css";
 
-const Login=()=> {
+const Login=({user,setUser})=> {
 
     const [result, setResult] = useState(false);
 
     const [data, setData] = useState({
-        username:"",
+        name:"",
         password:""
     });
 
@@ -17,15 +23,27 @@ const Login=()=> {
 
         e.preventDefault();
        
-     await axios.post("http://localhost:8080/user/login",data).then(result =>console.log(result));     
-
+     await axios.post("http://localhost:8080/user/login",data)    
+    //.then(result =>console.log(result))
+    .then(result=> result.data.result ? setUser(data.name): null)
+    //.then(result=>handleLogin(result.data.result))
+    //.then(result=>console.log(user));
+     
     };
+    
+
+    
+
+   
 
 
 
     // JSX code for login form
     const renderForm = (
         <div className="form">
+            <li className="nav-item">          
+          <Link className="nav-link" to="/">HomePAGE</Link>
+        </li>
             <form onSubmit={handleSubmit}>
                 <div className="input-container">
                     <label>Name </label>                    

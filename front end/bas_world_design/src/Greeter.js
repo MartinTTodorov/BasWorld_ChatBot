@@ -4,9 +4,13 @@ import {useEffect} from ".";
 import "./Greeter.css";
 import ChatBot from 'react-simple-chatbot';
 
-const Greeter = () => {
-    const [message, setMessage] = useState("");
+
+
+const Greeter = ({user}) => {
+    const [message, setMessage] = useState(`Hello ${greeter(user)}, how can I help you today?`);
     const [display, setDisplay] = useState(false);
+    
+
 
     // const saveMessage = (e) => {
     //     e.preventDefault();
@@ -14,13 +18,21 @@ const Greeter = () => {
     // }
 
     const greet = (e) => {
-        setMessage("Hello, how can I help you today?")
+        setMessage(`Hello ${user}, how can I help you today?`)
     }
+
+    function greeter (username)  {
+        if (username == undefined){
+            return "";
+        }
+        return username;
+    }
+
 
     const addMessageToState = (messages) => {
     };
 
-    function displayChat(){
+    function displayChat() {
         setDisplay(!display);
     }
 
@@ -84,6 +96,7 @@ const Greeter = () => {
                 <button className="popButton" onClick={displayChat}>{display ? "Close" :"Start a chat"}</button>
             </div>
         </>
+
     );
 
 
