@@ -48,7 +48,7 @@ const Signup=()=> {
                 </div>
                 <div className="input-container">
                     <label>Password </label>
-                    <input type="text" value={data.password}  onChange={(e)=>setData(prevState => ({...prevState,password: e.target.value}))} required />
+                    <input type="password" value={data.password}  onChange={(e)=>setData(prevState => ({...prevState,password: e.target.value}))} required />
                 </div>
                 <div className="button-container">
                     <input type="submit" />

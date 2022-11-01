@@ -4,9 +4,10 @@ import "./Greeter.css";
 
 
 
-const Greeter = (data) => {
-    const [message, setMessage] = useState(`Hello ${greeter(data.username)}, how can I help you today?`);
+const Greeter = ({user}) => {
+    const [message, setMessage] = useState(`Hello ${greeter(user)}, how can I help you today?`);
     const [display, setDisplay] = useState(false);
+    
 
 
     // const saveMessage = (e) => {
@@ -15,7 +16,7 @@ const Greeter = (data) => {
     // }
 
     const greet = (e) => {
-        setMessage(`Hello ${data.username}, how can I help you today?`)
+        setMessage(`Hello ${user}, how can I help you today?`)
     }
 
     function greeter (username)  {

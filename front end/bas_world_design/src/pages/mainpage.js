@@ -7,7 +7,7 @@ import login from "./login";
 
 
 
-const MainPage=()=>{
+const MainPage=({user})=>{
 
 
 
@@ -37,7 +37,7 @@ const MainPage=()=>{
                     </div>
                 </div>
             </header>
-            <Greeter data = {login}/>
+            <Greeter user = {user}/>
 
 
         </div>
