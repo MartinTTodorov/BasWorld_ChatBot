@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./styles.css";
+import { useNavigate } from "react-router-dom";
+
+
 
 const Login=()=> {
 
@@ -11,6 +14,11 @@ const Login=()=> {
         password:""
     });
 
+    const navigate = useNavigate();
+
+const navigateToRegisterPage = () => {
+    navigate('/signup');
+}
     
 
     const handleSubmit = async(e) => {
@@ -40,6 +48,10 @@ const Login=()=> {
                     <input type="submit" />
                 </div>
             </form>
+            <button className="formBtn"
+                onClick={navigateToRegisterPage}
+                >Don't have an account? click here
+                </button>
         </div>
     );
 
