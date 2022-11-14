@@ -1,8 +1,8 @@
-package com.code_of_duty.bas_chat_bot.controller;
+package com.code_of_duty_bas_chat_bot.controller;
 
-import com.code_of_duty.bas_chat_bot.business.UserService;
-import com.code_of_duty.bas_chat_bot.domain.CreateUserRequest;
-import com.code_of_duty.bas_chat_bot.domain.CreateUserResponse;
+import com.code_of_duty_bas_chat_bot.business.UserService;
+import com.code_of_duty_bas_chat_bot.domain.CreateUserRequest;
+import com.code_of_duty_bas_chat_bot.domain.CreateUserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,15 +21,7 @@ public class UserController {
     @PostMapping("/save")
     public ResponseEntity<CreateUserResponse> createUser(@RequestBody @Valid CreateUserRequest createUserRequest) {
         CreateUserResponse response = service.createUser(createUserRequest);
-
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
-
-    @GetMapping()
-    public String getUser(String email, String password) {
-        if (service.getUser(email, password) != null) {
-            return "Successful log in";
-        }
-        return "Try again later";
-    }
+    
 }

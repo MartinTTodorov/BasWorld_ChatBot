@@ -1,4 +1,4 @@
-package com.code_of_duty.bas_chat_bot.repository.entity;
+package com.code_of_duty_bas_chat_bot.repository.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
