@@ -2,8 +2,6 @@ package com.code_of_duty_bas_chat_bot.business.impl;
 
 import com.code_of_duty_bas_chat_bot.business.UserService;
 import com.code_of_duty_bas_chat_bot.domain.CreateUserRequest;
-import com.code_of_duty_bas_chat_bot.domain.CreateUserResponse;
-import com.code_of_duty_bas_chat_bot.domain.User;
 import com.code_of_duty_bas_chat_bot.repository.UserRepository;
 import com.code_of_duty_bas_chat_bot.repository.entity.UserEntity;
 import lombok.AllArgsConstructor;
@@ -19,7 +17,6 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
-import java.util.Random;
 
 @Service
 @AllArgsConstructor
@@ -32,16 +29,20 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = userRepository.findByEmail(username);
-        if (user.isEmpty()) {
+        UserEntity user = userRepository.findByEmail(username);
+        if (user == null) {
             log.error("User not found");
             throw new UsernameNotFoundException("Username not found in db");
         } else {
             log.info("User with email {} found", username);
         }
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("Customer"));
-        return new org.springframework.security.core.userdetails.User(user.get().getEmail(), user.get().getPassword(), authorities);
+        authorities.add(new SimpleGrantedAuthority(user.getRole()));
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorities);
+    }
+    @Override
+    public UserEntity findByEmail(String email){
+        return userRepository.findByEmail(email);
     }
     @Override
     public UserEntity createUser(CreateUserRequest request) {
@@ -51,15 +52,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             return null;
         } else {
             log.info("Saving new user {} .", request.getName());
-            request.setPassword(encoder.encode(request.getPassword()));
+
             UserEntity newUser = UserEntity.builder()
                     .name(request.getName())
                     .lastName(request.getLastName())
                     .CompanyName(request.getCompanyName())
                     .email(request.getEmail())
                     .password(request.getPassword())
+                    .role(request.getRole())
                     .build();
 
+            request.setPassword(encoder.encode(request.getPassword()));
             return userRepository.save(newUser);
         }
     }

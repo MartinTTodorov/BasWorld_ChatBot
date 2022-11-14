@@ -17,7 +17,7 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 public class UserEntity {
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
@@ -39,7 +39,9 @@ public class UserEntity {
     private String email;
 
     @Column(name = "password")
-
     private String password;
+
+    @Column(columnDefinition = "varchar(255) default 'Customer'")
+    private String role;
 
 }

@@ -1,6 +1,7 @@
 package com.code_of_duty_bas_chat_bot.security;
 
 import com.code_of_duty_bas_chat_bot.filters.CustomAuthenticationFilter;
+import com.code_of_duty_bas_chat_bot.filters.CustomAuthorizationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,11 +32,11 @@ public class SecurityConfig {
         http.cors().and();
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
-        /*http.authorizeRequests().antMatchers("/api/getAll").hasAuthority("Customer");
-        http.authorizeRequests().antMatchers("/login/**", "/api/token/refresh/**", "/destinations/**").permitAll();*/
+        /*http.authorizeRequests().antMatchers("/api/getAll").hasAuthority("Customer");*/
+        http.authorizeRequests().antMatchers("/login/**").permitAll();
         http.authorizeRequests().anyRequest().permitAll();
         http.addFilter(new CustomAuthenticationFilter(authenticationManager(authenticationConfiguration)));
-      //  http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
