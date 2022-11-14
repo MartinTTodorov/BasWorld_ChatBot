@@ -3,6 +3,7 @@ package com.code_of_duty_bas_chat_bot.controller;
 import com.code_of_duty_bas_chat_bot.business.UserService;
 import com.code_of_duty_bas_chat_bot.domain.CreateUserRequest;
 import com.code_of_duty_bas_chat_bot.domain.CreateUserResponse;
+import com.code_of_duty_bas_chat_bot.repository.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class UserController {
     private final UserService service;
 
     @PostMapping("/save")
-    public ResponseEntity<CreateUserResponse> createUser(@RequestBody CreateUserRequest createUserRequest) {
+    public ResponseEntity<UserEntity> createUser(@RequestBody CreateUserRequest createUserRequest) {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/user/save").toUriString());
         return  ResponseEntity.created(uri).body(service.createUser(createUserRequest));
     }

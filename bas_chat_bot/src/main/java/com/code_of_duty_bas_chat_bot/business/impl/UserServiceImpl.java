@@ -42,27 +42,23 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return new org.springframework.security.core.userdetails.User(user.get().getEmail(), user.get().getPassword(), authorities);
     }
     @Override
-    public CreateUserResponse createUser(CreateUserRequest request) {
+    public UserEntity createUser(CreateUserRequest request) {
 
-        UserEntity newUser = UserEntity.builder()
-                .name(request.getName())
-                .lastName(request.getLastName())
-                .CompanyName(request.getCompanyName())
-                .email(request.getEmail())
-                .password(encoder.encode(request.getPassword()))
-                .build();
+        if (userRepository.existsByEmail(request.getEmail()) == true) {
+            log.error("User not found");
+            return null;
+        } else {
+            log.info("Saving new user {} .", request.getName());
+            request.setPassword(encoder.encode(request.getPassword()));
+            UserEntity newUser = UserEntity.builder()
+                    .name(request.getName())
+                    .lastName(request.getLastName())
+                    .CompanyName(request.getCompanyName())
+                    .email(request.getEmail())
+                    .password(request.getPassword())
+                    .build();
 
-        UserEntity savedUser = save(newUser);
-
-
-        return CreateUserResponse.builder()
-                .userId(savedUser.getId())
-                .build();
-    }
-
-
-    private UserEntity save(UserEntity user){
-         return userRepository.save(user);
-//
+            return userRepository.save(newUser);
+        }
     }
 }
