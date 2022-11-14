@@ -12,6 +12,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,7 +24,9 @@ import java.util.Random;
 @AllArgsConstructor
 @Slf4j
 public class UserServiceImpl implements UserService, UserDetailsService {
-    UserRepository userRepository;
+    private UserRepository userRepository;
+    private final PasswordEncoder encoder;
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -46,7 +49,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .lastName(request.getLastName())
                 .CompanyName(request.getCompanyName())
                 .email(request.getEmail())
-                .password(request.getPassword())
+                .password(encoder.encode(request.getPassword()))
                 .build();
 
         UserEntity savedUser = save(newUser);
