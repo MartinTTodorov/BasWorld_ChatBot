@@ -23,6 +23,7 @@ public class UserController {
 
     @PostMapping("/save")
     public ResponseEntity<UserEntity> createUser(@RequestBody CreateUserRequest createUserRequest) {
+        createUserRequest.setCompanyName("apple");
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/user/save").toUriString());
         return  ResponseEntity.created(uri).body(service.createUser(createUserRequest));
     }

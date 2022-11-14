@@ -39,7 +39,7 @@ public class UserEntity {
     private String email;
 
     @Column(name = "password")
-    @Length(max = 50)
+
     private String password;
 
 }
