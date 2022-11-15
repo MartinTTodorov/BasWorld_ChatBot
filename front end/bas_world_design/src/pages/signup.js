@@ -22,6 +22,7 @@ const Signup=()=> {
      axios.post("http://localhost:8080/user/save",data).then(res=> console.log(res.data)) 
 
     };
+    
 
 
 
