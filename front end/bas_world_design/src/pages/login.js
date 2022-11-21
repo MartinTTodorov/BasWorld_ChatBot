@@ -8,17 +8,23 @@ import {
   } from "react-router-dom";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
+import login from "../login";
 
 
 
-const Login=({user,setUser})=> {
+const Login=()=> {
 
     const [result, setResult] = useState(false);
 
-    const [data, setData] = useState({
-        name:"",
-        password:""
-    });
+    // const [data, setData] = useState({
+    //     email:"",
+    //     password:""
+    // });
+    const [email, setEmail]=useState('');
+
+    const [password, setPassword]=useState('');
+    
+    
 
     const navigate = useNavigate();
 
@@ -27,17 +33,24 @@ const navigateToRegisterPage = () => {
 }
     
 
-    const handleSubmit = async(e) => {
+//     const handleSubmit = async(e) => {
 
-        e.preventDefault();
+//         e.preventDefault();
+        
        
-     await axios.post("http://localhost:8080/user/login",data)    
-    //.then(result =>console.log(result))
-    .then(result=> result.data.result ? setUser(data.name): null)
-    //.then(result=>handleLogin(result.data.result))
-    //.then(result=>console.log(user));
+//     //  await axios.post("http://localhost:9091/login",data)  
+//     // .then(result=> result.data.result ? setUser(data.name): null)
+//    // console.log(data);
      
-    };
+//     };
+    const handleSubmit = async(e)=>{
+        e.preventDefault();
+
+        let res = login({email,password})
+        // console.log(email);
+        // console.log(password);
+
+      }
     
 
     
@@ -55,11 +68,11 @@ const navigateToRegisterPage = () => {
             <form onSubmit={handleSubmit}>
                 <div className="input-container">
                     <label>Name </label>                    
-                    <input type="text" value={data.name}  onChange={(e)=>setData(prevState => ({...prevState,name: e.target.value}))} required />
+                    <input type="text" value={email}  onChange={(e)=>setEmail(e.target.value)} required />
                 </div>
                 <div className="input-container">
                     <label>Password </label>
-                    <input type="password" value={data.lastName}  onChange={(e)=>setData(prevState => ({...prevState,password: e.target.value}))} required />
+                    <input type="password" value={password}  onChange={(e)=>setPassword(e.target.value)} required />
                 </div>
                 
                 <div className="button-container">

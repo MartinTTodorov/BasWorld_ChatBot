@@ -9,7 +9,7 @@ const Signup=()=> {
     const [data, setData] = useState({
         name:"",
         lastName:"",
-        companyName:"",
+        CompanyName:"",
         email:"",
         password:""
     });
@@ -19,7 +19,7 @@ const Signup=()=> {
 
         e.preventDefault();
        
-     axios.post("http://localhost:8080/user/save",data).then(res=> console.log(res.data)) 
+     axios.post("http://localhost:9091/user/save",data).then(res=> console.log(res.data)) 
 
     };
     
@@ -41,7 +41,7 @@ const Signup=()=> {
                 </div>
                 <div className="input-container">
                     <label>Company Name </label>
-                    <input type="text" value={data.companyName}  onChange={(e)=>setData(prevState => ({...prevState,companyName: e.target.value}))} required />
+                    <input type="text" value={data.CompanyName}  onChange={(e)=>setData(prevState => ({...prevState,CompanyName: e.target.value}))} required />
                 </div>
                 <div className="input-container">
                     <label>Email</label>
