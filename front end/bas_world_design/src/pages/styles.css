@@ -61,3 +61,17 @@ input[type="submit"]:hover {
     gap: 8px;
     margin: 10px;
 }
+
+.formBtn {
+    width: 80%;
+    margin-left: 10%;
+    display: inline-flex;
+    padding: 1rem 3rem;
+    border: medium;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    background: #f4e1d2;
+    color: #fff;
+    margin-bottom: 2rem;
+    cursor: pointer;
+}
