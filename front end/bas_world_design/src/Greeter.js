@@ -37,48 +37,91 @@ const Greeter = ({user}) => {
     }
 
 
-    const steps = [
-        {
-            id: '0',
-            message:'Hello! Welcome to Bas World',
-            trigger: '1',
-        },
-        {
-            id: '1',
-            user: true,
-            trigger: '2',
-        },
-        {
-            id: '2',
-            user: true,
-            trigger: '3'
-        },
-        {
-            id: '3',
-            user: true,
-            trigger: '4'
-        },
-        {
-            id: '4',
-            user: true,
-            trigger: '5'
-        },
-        {
-            id: '5',
-            user: true,
-            trigger: '6'
-        },
-        {
-            id: '6',
-            user: true,
-            trigger: '7'
-        },
-        {
-            id: '7',
-            user: true,
-            end: true
-        }
-    ];
+    //const steps = [];
+
+    // for (let index = 0; index < array.length; index++) {
+    //     steps.push[
+    //         {
+    //             id: '0',
+    //             message:'Hello! Welcome to Bas World',
+    //             trigger: '1',
+    //         }
+    //     ]
+    // }
+
+   
+
+    let steps = [];
+        steps=[
+            {
+              id: '1',
+              message: 'Hello! My name is Bassy the chat bot! Here are some frequantly asked questions?',
+              trigger: '2',
+            },
+            {
+              id: '2',
+              options: [
+                { value: 1, label: 'FAQ 1', trigger: '3' },
+                { value: 2, label: 'FAQ 2', trigger: '4' },
+                { value: 3, label: 'FAQ 3', trigger: '5' },
+                { value: 4, label: 'nito edno', trigger: '6' },
+              ],
+            },
+            
+            {
+              id: '3',
+              message: 'FAQ 1 answer!'
+            },
+            {
+              id: '4',
+              message: 'FAQ 2 answer!'
+            },
+            {
+              id: '5',
+              message: 'FAQ 3 answer!'
+            },{
+                id: '6',
+                message: 'Here are some topics!',
+                trigger: '7'
+                  
+            }]
+
+
+
+           
+
+            
+            
+            
+            
+            steps.push(
+                {
+                    id: '7',
+                    options: [
+                        // { value: 5, label: 'FAQ 1', trigger: '8' },
+                        // { value: 6, label: 'FAQ 2', trigger: '8' },
+                        // { value: 7, label: 'FAQ 3', trigger: '8' },
+                        // { value: 8, label: 'nito edno', trigger: '8' },
+                    ]
+                }
+                )
+                
+                for (let index = 1; index < 5; index++) {
+                    steps[6].options.push(
+                        { value: index, label: 'Topic', trigger: '8' }
+                    )
+                }
+            
+            steps.push(
+                {
+                    id: '8',
+                    message: 'this is the end',
+                    end: true
+                }
+            )
+        
+    
+
     
 
     return (
