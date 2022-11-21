@@ -12,15 +12,15 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateUserRequest {
-    @NotBlank
+
     private String name;
-    @NotBlank
+
     private String lastName;
 
     private String CompanyName;
-    @NotBlank
+
     private String email;
-    @NotBlank
+
     private String password;
     private String role;
 }

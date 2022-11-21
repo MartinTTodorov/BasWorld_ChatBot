@@ -32,7 +32,7 @@ public class SecurityConfig {
         http.cors().and();
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
-        /*http.authorizeRequests().antMatchers("/api/getAll").hasAuthority("Customer");*/
+        http.authorizeRequests().antMatchers("/api/getAll").hasAuthority("Customer");
         http.authorizeRequests().antMatchers("/login/**").permitAll();
         http.authorizeRequests().anyRequest().permitAll();
         http.addFilter(new CustomAuthenticationFilter(authenticationManager(authenticationConfiguration)));
@@ -47,8 +47,8 @@ public class SecurityConfig {
             public void addCorsMappings(@NotNull CorsRegistry registry) {
                 registry
                         .addMapping("/**")
-                        .allowedMethods("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS");
-                     //   .allowedOrigins(webserver);
+                        .allowedMethods("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
+                        .allowedOrigins("http://localhost:3000");
             }
         };
     }

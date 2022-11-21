@@ -58,8 +58,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                     .lastName(request.getLastName())
                     .CompanyName(request.getCompanyName())
                     .email(request.getEmail())
-                    .password(request.getPassword())
-                    .role(request.getRole())
+                    .password(encoder.encode(request.getPassword()))
+                    .role("admin")
                     .build();
 
             request.setPassword(encoder.encode(request.getPassword()));
