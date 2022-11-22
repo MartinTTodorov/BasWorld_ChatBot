@@ -18,8 +18,8 @@ public class ConversationServiceImpl implements ConversationService {
         return repository.save(conversation);
     }
 
-    @Override
+  /*  @Override
     public List<Conversation> getAllBySenderAndReceiver(Long id) {
         return repository.getAllBySenderAndReceiver(id);
-    }
+    }*/
 }

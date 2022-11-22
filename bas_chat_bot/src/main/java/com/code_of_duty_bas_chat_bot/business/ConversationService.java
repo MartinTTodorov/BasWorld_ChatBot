@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface ConversationService {
     Conversation save(Conversation conversation);
-    List<Conversation> getAllBySenderAndReceiver(Long id);
+    //List<Conversation> getAllBySenderAndReceiver(Long id);
 
 }

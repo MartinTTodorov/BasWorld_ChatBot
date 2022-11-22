@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -22,11 +23,12 @@ public class ConversationController {
 
     @PostMapping()
     public ResponseEntity<Conversation> saveConversation(@RequestBody Conversation conversation) {
+        conversation.setDateTime(LocalDateTime.now());
         return  ResponseEntity.ok().body(service.save(conversation));
     }
-
+/*
     @GetMapping("{id}")
     public ResponseEntity<List<Conversation>> getAllConversations(@RequestBody Long id) {
         return  ResponseEntity.ok().body(service.getAllBySenderAndReceiver(id));
-    }
+    }*/
 }
