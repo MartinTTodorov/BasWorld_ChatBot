@@ -1,4 +1,5 @@
-import React from "react";
+import React,{ useState } from "react";
+//import { useNavigate } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
 import Greeter from "../Greeter";
@@ -8,8 +9,18 @@ import login from "./login";
 
 
 
-const MainPage=({user})=>{
+const MainPage=()=>{
+    // const [count, setCount] = useState(1);
+    // const navigate = useNavigate();
 
+    const handleSubmit = (e) => {
+
+        console.log("asdasd");
+        sessionStorage.clear(); 
+        // setCount(count+1);       
+        
+
+    };
 
 
     return(
@@ -18,6 +29,7 @@ const MainPage=({user})=>{
             <header className="App-header">
                 <input className="SearchBar" type="text"></input>
                 <div className="LogIn"><NavLink to="/login" aria-current="page">Login</NavLink></div>
+                <div className="LogIn"><NavLink onClick={handleSubmit} to="/login" aria-current="page" >Logout</NavLink></div>
                 <div className="header">
                     <div className="categories">Vehicle categories</div>
                     <div className="contact">Contact</div>
@@ -37,7 +49,7 @@ const MainPage=({user})=>{
                     </div>
                 </div>
             </header>
-            <Greeter user = {user}/>
+            <Greeter/>
 
 
         </div>

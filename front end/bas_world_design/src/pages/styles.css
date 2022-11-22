@@ -75,3 +75,7 @@ input[type="submit"]:hover {
     margin-bottom: 2rem;
     cursor: pointer;
 }
+.logoutButton{
+    position: absolute;
+    right: 15px;
+}

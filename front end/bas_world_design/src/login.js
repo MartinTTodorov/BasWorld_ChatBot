@@ -1,4 +1,6 @@
 import axios from "axios";
+import jwt_decode from "jwt-decode";
+// import { useNavigate } from "react-router-dom";
 
 
 
@@ -6,7 +8,7 @@ import axios from "axios";
 export default async function login({ email, password }) {
 
 
-
+  
   var qs = require("qs");
 
 
@@ -63,7 +65,14 @@ export default async function login({ email, password }) {
       sessionStorage.setItem("accessToken", response.data.access_token)
   
       sessionStorage.setItem("refreshToken", response.data.refresh_token)
-      console.log(response)
+      // console.log(response)
+      
+      const decoded = jwt_decode(response.data.access_token);
+      const email =  decoded.sub;
+      const name = email.substr(0, email.indexOf('@'))
+      sessionStorage.setItem("userName", name)
+      // const navigate = useNavigate();
+      // navigate("/")
   
     }  )
   
