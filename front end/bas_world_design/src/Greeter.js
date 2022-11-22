@@ -1,15 +1,30 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
+//import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import {useEffect} from ".";
+// import {useEffect} from ".";
 import "./Greeter.css";
 import ChatBot from 'react-simple-chatbot';
 
 
 
-const Greeter = ({user}) => {
-    const [message, setMessage] = useState(`Hello ${greeter(user)}, how can I help you today?`);
+const Greeter = () => {
+    // const [message, setMessage] = useState(`Hello ${greeter(name)}, how can I help you today?`);
     const [display, setDisplay] = useState(false);
-    
+    const [name, setName] = useState(sessionStorage.getItem("userName"));
+   //const navigate = useNavigate();
+
+    useEffect(() => {
+        sessionStorage.getItem("userName")==null ? setName("Guest") : setName(sessionStorage.getItem("userName"))
+            
+        //navigate(0);
+      },[]);
+
+     function loggedUser ()  {
+        if (name == undefined){
+            return "Guest";
+        }
+        return name;
+    }
 
 
     // const saveMessage = (e) => {
@@ -17,9 +32,9 @@ const Greeter = ({user}) => {
     //     axios.post("http://localhost:8080/converastion", message).then()
     // }
 
-    const greet = (e) => {
-        setMessage(`Hello ${user}, how can I help you today?`)
-    }
+    // const greet = (e) => {
+    //     setMessage(`Hello ${name}, how can I help you today?`)
+    // }
 
     function greeter (username)  {
         if (username == undefined){
@@ -41,7 +56,7 @@ const Greeter = ({user}) => {
         steps=[
             {
               id: '1',
-              message: 'Hello! My name is Bassy the chat bot! Here are some frequantly asked questions?',
+              message: `Hello ${loggedUser()} ! My name is Bassy the chat bot! Here are some frequantly asked questions?`,
               trigger: '2',
             },
             {

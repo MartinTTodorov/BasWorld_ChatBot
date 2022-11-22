@@ -48,7 +48,6 @@ public class SecurityConfig {
                 registry
                         .addMapping("/**")
                         .allowedMethods("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS");
-                     //   .allowedOrigins(webserver);
             }
         };
     }
