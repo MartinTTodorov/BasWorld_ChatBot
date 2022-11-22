@@ -6,14 +6,15 @@ import {
     Route,
     Link
   } from "react-router-dom";
-import "./styles.css";
 import { useNavigate } from "react-router-dom";
+import "./styles.css";
 import login from "../login";
 
 
 
 const Login=()=> {
 
+    const navigate = useNavigate();
     const [result, setResult] = useState(false);
 
     // const [data, setData] = useState({
@@ -23,10 +24,6 @@ const Login=()=> {
     const [email, setEmail]=useState('');
 
     const [password, setPassword]=useState('');
-    
-    
-
-    const navigate = useNavigate();
 
 const navigateToRegisterPage = () => {
     navigate('/signup');
@@ -44,9 +41,12 @@ const navigateToRegisterPage = () => {
      
 //     };
     const handleSubmit = async(e)=>{
-        e.preventDefault();
+        //e.preventDefault();
 
         let res = login({email,password})
+        
+        navigate("/")
+        navigate(0)
         // console.log(email);
         // console.log(password);
 
@@ -62,9 +62,9 @@ const navigateToRegisterPage = () => {
     // JSX code for login form
     const renderForm = (
         <div className="form">
-            <li className="nav-item">          
+            {/* <li className="nav-item">          
           <Link className="nav-link" to="/">HomePAGE</Link>
-        </li>
+        </li> */}
             <form onSubmit={handleSubmit}>
                 <div className="input-container">
                     <label>Name </label>                    

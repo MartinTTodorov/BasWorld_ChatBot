@@ -1,13 +1,13 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-// import { useNavigate } from "react-router-dom";
+
 
 
 
 
 export default async function login({ email, password }) {
 
-
+ 
   
   var qs = require("qs");
 
@@ -71,8 +71,8 @@ export default async function login({ email, password }) {
       const email =  decoded.sub;
       const name = email.substr(0, email.indexOf('@'))
       sessionStorage.setItem("userName", name)
-      // const navigate = useNavigate();
-      // navigate("/")
+      
+      
   
     }  )
   

@@ -15,7 +15,7 @@ const MainPage=()=>{
 
     const handleSubmit = (e) => {
 
-        console.log("asdasd");
+        // console.log("asdasd");
         sessionStorage.clear(); 
         // setCount(count+1);       
         
