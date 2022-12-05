@@ -51,12 +51,18 @@ const Greeter = () => {
         setDisplay(!display);
     }
    
+const saveConvo = (index, message, sender, receiver) => {
+    axios.post('http://localhost:8080/conversations', {message:  message, sender: sender, receiver: receiver})
+}
+
+
+
 
     let steps = [];
         steps=[
             {
               id: '1',
-              message: `Hello ${loggedUser()} ! My name is Bassy the chat bot! Here are some frequantly asked questions?`,
+              message: `Hello ${loggedUser()} ! My name is Bassy the chat bot! Here are some frequently asked questions?`,
               trigger: '2',
             },
             {
@@ -72,16 +78,17 @@ const Greeter = () => {
             {
               id: '3',
               message: 'FAQ 1 answer!',
-              //trigger: 'extra'
+              trigger: '8'
             },
             {
               id: '4',
               message: 'FAQ 2 answer!',
-              
+              trigger: '8'
             },
             {
               id: '5',
-              message: 'FAQ 3 answer!'
+              message: 'FAQ 3 answer!',
+                trigger: '8'
             },
             {
                 id: '6',
@@ -111,7 +118,7 @@ const Greeter = () => {
                 
                 for (let index = 1; index < 5; index++) {
                     steps[6].options.push(
-                        { value: index, label: 'Topic', trigger: '8' }
+                        { value: index, label: 'Topic ' + index, trigger: '8' }
                     )
                 }
             
