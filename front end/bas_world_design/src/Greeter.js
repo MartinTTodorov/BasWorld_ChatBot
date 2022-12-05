@@ -1,7 +1,4 @@
 import React, {useState,useEffect} from "react";
-//import { useNavigate } from "react-router-dom";
-import axios from "axios";
-// import {useEffect} from ".";
 import "./Greeter.css";
 import ChatBot from 'react-simple-chatbot';
 
@@ -56,7 +53,7 @@ const Greeter = () => {
         steps=[
             {
               id: '1',
-              message: `Hello ${loggedUser()} ! My name is Bassy the chat bot! Here are some frequantly asked questions?`,
+              message: `Hello ${loggedUser()} ! My name is Bassy the chat bot! Here are some frequently asked questions?`,
               trigger: '2',
             },
             {

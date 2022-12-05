@@ -12,14 +12,22 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class ConversationServiceImpl implements ConversationService {
-    private ConversationRepository repository;
+    private ConversationRepository conversation_repository;
+
     @Override
-    public Conversation save(Conversation conversation) {
-        return repository.save(conversation);
+    public Conversation saveConversation(Conversation conversation) {
+        if(conversation != null){
+            return conversation_repository.save(conversation);
+        }else{
+         return null;
+        }
     }
 
-  /*  @Override
-    public List<Conversation> getAllBySenderAndReceiver(Long id) {
-        return repository.getAllBySenderAndReceiver(id);
-    }*/
+    @Override
+    public Conversation readConversation(Integer conversation_id) {
+        if(conversation_id > -1){
+            return conversation_repository.getReferenceById(conversation_id);
+        }
+        return null;
+    }
 }

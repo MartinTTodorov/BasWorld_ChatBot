@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 @Repository
-public interface ConversationRepository extends JpaRepository<Conversation,Long> {
-    Conversation save (Conversation conversation);
-    //List<Conversation> getAllBySenderAndReceiver(Long id);
+public interface ConversationRepository extends JpaRepository<Conversation,Integer> {
+
 }
