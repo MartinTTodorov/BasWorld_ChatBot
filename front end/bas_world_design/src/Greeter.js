@@ -1,10 +1,6 @@
 import React, {useState,useEffect} from "react";
-<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// import {useEffect} from ".";
-=======
->>>>>>> 0e5a27e65eecf6540734a67727af2bbfed4068e3
 import "./Greeter.css";
 import ChatBot from 'react-simple-chatbot';
 
