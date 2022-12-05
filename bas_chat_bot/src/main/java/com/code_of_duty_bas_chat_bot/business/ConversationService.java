@@ -5,7 +5,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 public interface ConversationService {
-    Conversation save(Conversation conversation);
-    List<Conversation> getAllBySenderAndReceiver(Long id);
+    Conversation saveConversation(Conversation conversation);
+    Conversation readConversation(Integer conversation_id);
+
 
 }

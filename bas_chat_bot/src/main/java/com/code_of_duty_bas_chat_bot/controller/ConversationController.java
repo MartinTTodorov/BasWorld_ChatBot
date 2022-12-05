@@ -5,28 +5,40 @@ import com.code_of_duty_bas_chat_bot.business.UserService;
 import com.code_of_duty_bas_chat_bot.domain.Conversation;
 import com.code_of_duty_bas_chat_bot.domain.CreateUserRequest;
 import com.code_of_duty_bas_chat_bot.repository.entity.UserEntity;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
 @RequestMapping("/conversations")
 @RequiredArgsConstructor
-@CrossOrigin("http://localhost:3000")
 public class ConversationController {
-    private final ConversationService service;
+    private final ConversationService conversation_service;
 
-    @PostMapping()
-    public ResponseEntity<Conversation> saveConversation(@RequestBody Conversation conversation) {
-        return  ResponseEntity.ok().body(service.save(conversation));
+    @GetMapping("/{id}")
+    ResponseEntity<Conversation> getConversation(@PathVariable (value = "id") Integer conversation_id){
+        try{
+        return ResponseEntity.ok(conversation_service.readConversation(conversation_id));
+
+        }catch (Exception ex){
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<List<Conversation>> getAllConversations(@RequestBody Long id) {
-        return  ResponseEntity.ok().body(service.getAllBySenderAndReceiver(id));
+    @PostMapping("/save")
+    ResponseEntity<Conversation> saveConversation(@RequestBody Conversation conversation){
+        try{
+
+            return ResponseEntity.ok(conversation_service.saveConversation(conversation));
+
+        }catch (Exception ex){
+            return ResponseEntity.badRequest().build();
+        }
     }
 }

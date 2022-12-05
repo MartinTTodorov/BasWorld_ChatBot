@@ -1,7 +1,10 @@
 import React, {useState,useEffect} from "react";
+<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 // import {useEffect} from ".";
+=======
+>>>>>>> 0e5a27e65eecf6540734a67727af2bbfed4068e3
 import "./Greeter.css";
 import ChatBot from 'react-simple-chatbot';
 
@@ -51,27 +54,13 @@ const Greeter = () => {
     function displayChat() {
         setDisplay(!display);
     }
-
-
-    //const steps = [];
-
-    // for (let index = 0; index < array.length; index++) {
-    //     steps.push[
-    //         {
-    //             id: '0',
-    //             message:'Hello! Welcome to Bas World',
-    //             trigger: '1',
-    //         }
-    //     ]
-    // }
-
    
 
     let steps = [];
         steps=[
             {
               id: '1',
-              message: `Hello ${loggedUser()} ! My name is Bassy the chat bot! Here are some frequantly asked questions?`,
+              message: `Hello ${loggedUser()} ! My name is Bassy the chat bot! Here are some frequently asked questions?`,
               trigger: '2',
             },
             {
@@ -80,33 +69,38 @@ const Greeter = () => {
                 { value: 1, label: 'FAQ 1', trigger: '3' },
                 { value: 2, label: 'FAQ 2', trigger: '4' },
                 { value: 3, label: 'FAQ 3', trigger: '5' },
-                { value: 4, label: 'nito edno', trigger: '6' },
+                { value: 4, label: 'Neither', trigger: '6' },
               ],
             },
             
             {
               id: '3',
-              message: 'FAQ 1 answer!'
+              message: 'FAQ 1 answer!',
+              //trigger: 'extra'
             },
             {
               id: '4',
-              message: 'FAQ 2 answer!'
+              message: 'FAQ 2 answer!',
+              
             },
             {
               id: '5',
               message: 'FAQ 3 answer!'
-            },{
+            },
+            {
                 id: '6',
-                message: 'Here are some topics!',
+                message: 'Please choose a topic!',
                 trigger: '7'
                   
-            }]
-
-
-
-           
-
-            
+            },
+            // {
+            //     id: 'extra',
+            //     options:[
+            //         { value: 1, label: 'Yes', trigger: '2' },
+            //         { value: 2, label: 'No', trigger: '10' },
+            //     ],
+            // }
+        ]
             
             
             
@@ -114,10 +108,7 @@ const Greeter = () => {
                 {
                     id: '7',
                     options: [
-                        // { value: 5, label: 'FAQ 1', trigger: '8' },
-                        // { value: 6, label: 'FAQ 2', trigger: '8' },
-                        // { value: 7, label: 'FAQ 3', trigger: '8' },
-                        // { value: 8, label: 'nito edno', trigger: '8' },
+                        
                     ]
                 }
                 )
@@ -131,7 +122,19 @@ const Greeter = () => {
             steps.push(
                 {
                     id: '8',
-                    message: 'this is the end',
+                    message: 'Do you have any more questions?',
+                    trigger: '9'
+                },
+                {
+                    id: '9',
+                    options:[
+                        { value: 1, label: 'Yes', trigger: '6' },
+                        { value: 2, label: 'No', trigger: '10' },
+                    ],
+                },
+                {
+                    id: '10',
+                    message: 'Thank you for reaching out to Bassy! Have a great day!',
                     end: true
                 }
             )
