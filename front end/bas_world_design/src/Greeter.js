@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from "react";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 // import {useEffect} from ".";
 import "./Greeter.css";
@@ -11,7 +11,8 @@ const Greeter = () => {
     // const [message, setMessage] = useState(`Hello ${greeter(name)}, how can I help you today?`);
     const [display, setDisplay] = useState(false);
     const [name, setName] = useState(sessionStorage.getItem("userName"));
-   //const navigate = useNavigate();
+   const navigate = useNavigate();
+   
 
     useEffect(() => {
         sessionStorage.getItem("userName")==null ? setName("Guest") : setName(sessionStorage.getItem("userName"))

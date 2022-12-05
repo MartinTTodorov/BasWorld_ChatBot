@@ -30,6 +30,7 @@ const MainPage=()=>{
                 <input className="SearchBar" type="text"></input>
                 <div className="LogIn"><NavLink to="/login" aria-current="page">Login</NavLink></div>
                 <div className="LogIn"><NavLink onClick={handleSubmit} to="/login" aria-current="page" >Logout</NavLink></div>
+                <div className="LogIn"><NavLink to="/admin" aria-current="page">Administration</NavLink></div>
                 <div className="header">
                     <div className="categories">Vehicle categories</div>
                     <div className="contact">Contact</div>
