@@ -20,7 +20,16 @@ public class FAQServiceImpl implements FAQService {
 
     @Override
     public FAQ findByQuestion(String question) {
-      
+//        FAQ faq = repository.findByQuestion(question);
+//        if (faq != null) {
+//            return faq;
+//        }
+//
+//        String[] words = question.split("\\W+");
+//        for (int i = 0; i < words.length; i++) {
+//
+//        }
+
         return repository.findByQuestion(question);
     }
 

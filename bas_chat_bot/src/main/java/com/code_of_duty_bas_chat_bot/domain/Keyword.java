@@ -1,25 +1,25 @@
 package com.code_of_duty_bas_chat_bot.domain;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-public class FAQ {
+public class Keyword {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String question;
-    private String answer;
-    private String topic;
-    @OneToMany(mappedBy = "faq")
+    @ManyToOne()
+    @JoinColumn(name = "faq_id", referencedColumnName = "id")
     @Cascade({org.hibernate.annotations.CascadeType.ALL})
-    private List<Keyword> keywords;
+    private FAQ faq;
+    private String keyword;
 }
