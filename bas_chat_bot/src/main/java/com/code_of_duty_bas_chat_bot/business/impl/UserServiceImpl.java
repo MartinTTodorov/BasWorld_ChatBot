@@ -1,6 +1,10 @@
 package com.code_of_duty_bas_chat_bot.business.impl;
 
 import com.code_of_duty_bas_chat_bot.business.UserService;
+import com.code_of_duty_bas_chat_bot.business.exception.EmailAddressAlreadyExistException;
+import com.code_of_duty_bas_chat_bot.business.exception.EmailAddressNotFoundException;
+import com.code_of_duty_bas_chat_bot.business.exception.InvalidCredentialsException;
+import com.code_of_duty_bas_chat_bot.business.exception.UserNotFoundException;
 import com.code_of_duty_bas_chat_bot.domain.CreateUserRequest;
 import com.code_of_duty_bas_chat_bot.repository.UserRepository;
 import com.code_of_duty_bas_chat_bot.repository.entity.UserEntity;
@@ -42,14 +46,21 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
     @Override
     public UserEntity findByEmail(String email){
+        if(!userRepository.existsByEmail(email)){
+            throw new EmailAddressNotFoundException();
+        }
         return userRepository.findByEmail(email);
     }
     @Override
     public UserEntity createUser(CreateUserRequest request) {
 
-        if (userRepository.existsByEmail(request.getEmail()) == true) {
-            log.error("User not found");
-            return null;
+        if (userRepository.existsByEmail(request.getEmail())) {
+            log.error("Email address already exists");
+            throw new EmailAddressAlreadyExistException();
+        } else if (request.getName().length()<2||request.getName().length()>30
+        ||request.getLastName().length()<2||request.getLastName().length()>30
+        ||request.getEmail().length()>50) {
+            throw new InvalidCredentialsException();
         } else {
             log.info("Saving new user {} .", request.getName());
 

@@ -1,26 +1,14 @@
 import React, { useState } from "react";
-import axios from "axios";
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
-    Link
-  } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./styles.css";
 import login from "../login";
 
 
 
 const Login=()=> {
-
     const navigate = useNavigate();
-    const [result, setResult] = useState(false);
 
-    // const [data, setData] = useState({
-    //     email:"",
-    //     password:""
-    // });
     const [email, setEmail]=useState('');
 
     const [password, setPassword]=useState('');
@@ -30,41 +18,14 @@ const navigateToRegisterPage = () => {
 }
     
 
-//     const handleSubmit = async(e) => {
-
-//         e.preventDefault();
-        
-       
-//     //  await axios.post("http://localhost:9091/login",data)  
-//     // .then(result=> result.data.result ? setUser(data.name): null)
-//    // console.log(data);
-     
-//     };
     const handleSubmit = async(e)=>{
-        //e.preventDefault();
+        e.preventDefault();
 
-        let res = login({email,password})
-        
-        navigate("/")
-        navigate(0)
-        // console.log(email);
-        // console.log(password);
-
+        login({email,password})
       }
     
-
-    
-
-   
-
-
-
-    // JSX code for login form
     const renderForm = (
         <div className="form">
-            {/* <li className="nav-item">          
-          <Link className="nav-link" to="/">HomePAGE</Link>
-        </li> */}
             <form onSubmit={handleSubmit}>
                 <div className="input-container">
                     <label>Name </label>                    
@@ -79,18 +40,21 @@ const navigateToRegisterPage = () => {
                     <input type="submit" />
                 </div>
             </form>
-            <button className="formBtn"
+            <h4>Don't you have an account yet? </h4>
+            <p onClick={navigateToRegisterPage} className="navigateLink">Click here!</p>
+            {/* <button className="formBtn"
                 onClick={navigateToRegisterPage}
                 >Don't have an account? click here
-                </button>
+                </button> */}
         </div>
     );
 
     return (
         <div className="app">
+            <div ><NavLink to="/" aria-current="page" >HomePage</NavLink></div>
             <div className="login-form">
                 <div className="title">Sign In</div>
-                {result ? <div>Welcome</div> : renderForm}
+                {renderForm}
             </div>
         </div>
     );

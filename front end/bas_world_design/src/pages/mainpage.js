@@ -1,26 +1,39 @@
-import React,{ useState } from "react";
-//import { useNavigate } from "react-router-dom";
-import logo from './logo.svg';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import './App.css';
 import Greeter from "../Greeter";
 import { NavLink } from "react-router-dom";
-import login from "./login";
+//import logo from './logo.svg';
 
 
 
 
 const MainPage=()=>{
-    // const [count, setCount] = useState(1);
-    // const navigate = useNavigate();
+     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
-
-        // console.log("asdasd");
-        sessionStorage.clear(); 
-        // setCount(count+1);       
-        
-
+    const handleSubmit = () => {
+        sessionStorage.clear();
+        navigate(0);
     };
+
+    const navbar =(
+        <div className="navbar">
+                {
+                    sessionStorage.getItem('accessToken')? 
+                    <div>
+                    <div className="LogIn"><NavLink onClick={handleSubmit} to="/" aria-current="page" >Logout</NavLink></div>
+                    <div className="LogIn"><NavLink to="/admin" aria-current="page">Administration</NavLink></div> 
+                    </div> 
+                    : 
+                    <div>
+                    <div className="LogIn"><NavLink to="/signup" aria-current="page">Signup</NavLink></div> 
+                    <div className="LogIn"><NavLink to="/login" aria-current="page">Login</NavLink></div>
+                    </div>
+
+                }                       
+        </div>
+
+    );
 
 
     return(
@@ -28,9 +41,8 @@ const MainPage=()=>{
         <div className="App">
             <header className="App-header">
                 <input className="SearchBar" type="text"></input>
-                <div className="LogIn"><NavLink to="/login" aria-current="page">Login</NavLink></div>
-                <div className="LogIn"><NavLink onClick={handleSubmit} to="/login" aria-current="page" >Logout</NavLink></div>
-                <div className="LogIn"><NavLink to="/admin" aria-current="page">Administration</NavLink></div>
+                {navbar}
+                
                 <div className="header">
                     <div className="categories">Vehicle categories</div>
                     <div className="contact">Contact</div>

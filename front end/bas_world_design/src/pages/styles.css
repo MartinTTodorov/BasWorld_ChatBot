@@ -79,3 +79,12 @@ input[type="submit"]:hover {
     position: absolute;
     right: 15px;
 }
+.navigateLink{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.navigateLink:hover{
+    font-size: 27px;
+    font-weight: bold;
+}

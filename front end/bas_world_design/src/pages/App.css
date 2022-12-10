@@ -170,4 +170,10 @@
     font-size: 2.3rem;
     text-align: center;
   }
+
+  .navbar {
+    position: absolute;
+    right: 2%;
+    top: 3.5%;
+  }
   

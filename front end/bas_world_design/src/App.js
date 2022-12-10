@@ -1,20 +1,17 @@
-import React, {useState} from "react";
+import React from "react";
 import {
-    BrowserRouter as Router,
+    BrowserRouter,
     Routes,
-    Route,
-    BrowserRouter
+    Route
   } from "react-router-dom";
 import Login from "./pages/login";
 import MainPage from "./pages/mainpage";
 import Signup from "./pages/signup"
-import layout from "./pages/layout";
 import Admin from "./pages/adminpage"
-
+//import layout from "./pages/layout";
 
 
 function App() {
-    const [user, setUser] = useState("Guest");
     
     return (
         

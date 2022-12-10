@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./styles.css";
-
 const Signup=()=> {
-
-    const [isSubmitted, setIsSubmitted] = useState(false);
-
+    const navigate = useNavigate();
     const [data, setData] = useState({
         name:"",
         lastName:"",
@@ -13,6 +12,9 @@ const Signup=()=> {
         email:"",
         password:""
     });
+    const navigateToRegisterPage = () => {
+        navigate('/login');
+    }
     
 
     const handleSubmit = (e) => {
@@ -24,15 +26,11 @@ const Signup=()=> {
     };
     
 
-
-
-    // JSX code for login form
     const renderForm = (
         <div className="form">
             <form onSubmit={handleSubmit}>
                 <div className="input-container">
                     <label>Name </label>
-                    {/*<input type="text" value={data.name}  onChange={(e) => (data=>data.name).setData(e.target.value)} required />*/}
                     <input type="text" value={data.name}  onChange={(e)=>setData(prevState => ({...prevState,name: e.target.value}))} required />
                 </div>
                 <div className="input-container">
@@ -45,7 +43,7 @@ const Signup=()=> {
                 </div>
                 <div className="input-container">
                     <label>Email</label>
-                    <input type="text" value={data.email}  onChange={(e)=>setData(prevState => ({...prevState,email: e.target.value}))} required />
+                    <input type="email" value={data.email}  onChange={(e)=>setData(prevState => ({...prevState,email: e.target.value}))} required />
                 </div>
                 <div className="input-container">
                     <label>Password </label>
@@ -60,10 +58,13 @@ const Signup=()=> {
 
     return (
         <div className="app">
+        <div ><NavLink to="/" aria-current="page" >HomePage</NavLink></div>
             <div className="login-form">
                 <div className="title">Sign Up</div>
-                {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
-            </div>
+                { renderForm}
+                <h4>Do you want to sign in? </h4>
+            <p onClick={navigateToRegisterPage} className="navigateLink">Click here!</p>
+            </div>            
         </div>
     );
 }
