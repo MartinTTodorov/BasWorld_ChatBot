@@ -1,5 +1,6 @@
 package com.code_of_duty_bas_chat_bot.domain;
 
+import com.code_of_duty_bas_chat_bot.domain.requests.CreateUserRequest;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

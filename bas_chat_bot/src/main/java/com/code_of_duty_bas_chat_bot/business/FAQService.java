@@ -10,4 +10,6 @@ public interface FAQService {
     FAQ findByQuestion(String question);
 
     FAQ findByKeyword(String keyword);
+
+    FAQ findByTopic(String question);
 }

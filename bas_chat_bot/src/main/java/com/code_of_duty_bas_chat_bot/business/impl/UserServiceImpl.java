@@ -1,7 +1,7 @@
 package com.code_of_duty_bas_chat_bot.business.impl;
 
 import com.code_of_duty_bas_chat_bot.business.UserService;
-import com.code_of_duty_bas_chat_bot.domain.CreateUserRequest;
+import com.code_of_duty_bas_chat_bot.domain.requests.CreateUserRequest;
 import com.code_of_duty_bas_chat_bot.repository.UserRepository;
 import com.code_of_duty_bas_chat_bot.repository.entity.UserEntity;
 import lombok.AllArgsConstructor;
@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
