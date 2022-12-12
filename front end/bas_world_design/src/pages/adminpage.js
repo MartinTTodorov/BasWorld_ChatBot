@@ -4,10 +4,11 @@ import './App.css';
 
 
 
-
 function adminpage() {
 
     const [messages, setMessages] = useState([]);
+    const [message, setMessage] = useState('');
+
 
     const fetchMessages = () => {
         axios.get('http://localhost:8080/messages')
@@ -20,6 +21,10 @@ function adminpage() {
         })
     }
 
+    function displayChat() {
+        setMessage(document.getElementById("message").style.display = "block")
+    }
+   
 
     useEffect(() => {
         fetchMessages()
@@ -28,25 +33,38 @@ function adminpage() {
 
 
     return (
-        <div>
-            <p className="textPrimary">Messages from customers</p>
-            <div className="gridContainer">
-                <div>
-                    <h1 className="textDecore">(Name of the customer)</h1>
-                    <p className="textDecore">Hello I need help with my order</p>
-                    <button type="button" className="formBtn">Reply</button>
+        <div className="wrapper">
+            <header>
+                <p className="textPrimary">Messages from customers</p>
+            </header>
+            <article>
+                <div className="container">
+                    <h1>(Name of the customer)</h1>
+                    <p>{message}</p>
+                    <input type="text" placeholder="Reply to the message here"></input>
+                    <input type="submit" value="Submit" />
                 </div>
-                <div>
-                    <h1 className="textDecore">(Name of the customer)</h1>
-                    <p className="textDecore">I have a problem with the insurance</p>
-                    <button type="button" className="formBtn">Reply</button>
-                </div>
-                <div>
-                    <h1 className="textDecore">(Name of the customer)</h1>
-                    <p className="textDecore">I haven't got my refund back</p>
-                    <button type="button" className="formBtn">Reply</button>
-                </div>
-            </div>
+            </article>
+            <aside>
+                <ul>
+                    <li>
+                        <h1 className="textDecore">(Name of the customer)</h1>
+                        <p className="textDecore" id="message">Hello I need help with my order</p>
+                        <button className="formBtn" onClick={displayChat}>Reply</button>
+                    </li>
+
+                    <li>
+                        <h1 className="textDecore">(Name of the customer)</h1>
+                        <p className="textDecore" id="message">I have a problem with the insurance</p>
+                        <button className="formBtn" onClick={displayChat}>Reply</button>
+                    </li>
+                    <li>
+                        <h1 className="textDecore">(Name of the customer)</h1>
+                        <p className="textDecore" id="message">I haven't got my refund back</p>
+                        <button className="formBtn" onClick={displayChat}>Reply</button>
+                    </li>
+                </ul>
+            </aside>
         </div>
     )
 }
