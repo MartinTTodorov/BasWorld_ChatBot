@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import './App.css';
 import Greeter from "../Greeter";
 import { NavLink } from "react-router-dom";
+import Chat from "./chatComponent";
 //import logo from './logo.svg';
 
 
@@ -62,7 +63,8 @@ const MainPage=()=>{
                     </div>
                 </div>
             </header>
-            <Greeter/>
+            {/* <Greeter/> */}
+            <Chat/>
 
 
         </div>
