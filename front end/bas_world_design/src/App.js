@@ -8,6 +8,7 @@ import Login from "./pages/login";
 import MainPage from "./pages/mainpage";
 import Signup from "./pages/signup"
 import Admin from "./pages/adminpage"
+import LiveSupportPage from "./pages/LiveSupportPage";
 //import layout from "./pages/layout";
 
 
@@ -22,6 +23,7 @@ function App() {
                     <Route path="/login" element={<Login />}/>
                     <Route path="/" element={<MainPage/>}/>
                     <Route path="/admin" element={<Admin/>}/>
+                    <Route path="/support" element={<LiveSupportPage/>}/>
                 </Routes>
             </div>
         </BrowserRouter>

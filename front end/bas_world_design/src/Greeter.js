@@ -4,6 +4,7 @@ import axios from "axios";
 // import {useEffect} from ".";
 import "./Greeter.css";
 import ChatBot from 'react-simple-chatbot';
+import ChatComponent from "./Components/ChatComponent";
 
 
 function Greeter () {
@@ -184,7 +185,8 @@ function Greeter () {
                     <ChatBot steps={steps} cache={true}/>
 
                 </segment>
-                <button className="popButton" onClick={displayChat}>{display ? "Close" : "Start a chat"}</button>
+                {/* <button className="popButton" onClick={displayChat}>{display ? "Close" : "Start a chat"}</button> */}
+                <ChatComponent/>
             </div>
         </>
 

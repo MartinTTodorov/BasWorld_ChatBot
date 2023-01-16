@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import ChatBot from "react-simple-chatbot";
+import ChatComponent from "./Components/ChatComponent";
 
 export default function Greeter2() {
 
@@ -256,7 +257,8 @@ export default function Greeter2() {
         <>
             <div className="chat-container">
                 <segment className={display ? "coversation chatbox" : "normal-coversation"}>
-                    <ChatBot steps={steps}/>
+                    {/* <ChatBot steps={steps}/> */}
+                    <ChatComponent/>
 
                 </segment>
                 <button className="popButton" onClick={displayChat}>{display ? "Close" : "Start a chat"}</button>
