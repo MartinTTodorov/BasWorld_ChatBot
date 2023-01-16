@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import ChatBot from "react-simple-chatbot";
+import StarRating from "./StarRating";
 
 export default function Greeter2() {
 
@@ -190,7 +191,7 @@ export default function Greeter2() {
         },
         {
             id: 6,
-            message: "I hope I was helpful. Wish you a nice day."
+            component: (<StarRating/>)
         }
         // {
         //     id: '5',

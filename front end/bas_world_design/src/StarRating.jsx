@@ -1,73 +1,70 @@
-import React, {useState} from "react";
-import styled from "styled-components";
-import {FaStar} from "react-icons/all";
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
-const [currentValue, setCurrentValue] = useState(0);
-const [hoverValue, setHoverValue] = useState(undefined);
-const stars = Array(5).fill(0)
-const colors ={
-    orange: "#FFBA5A",
-    grey: "#a9a9a9"
-};
+const StarRatingContainer = styled.div` display: flex; align-items: center;`;
 
-const handleClick = value => {
-    setCurrentValue(value)
-}
+const Star = styled.span`
+  font-size: 2em;
+  color: #ffc107;
+  cursor: pointer;
 
-const handleMouseOver = newHoverValue => {
-    setHoverValue(newHoverValue)
-};
+  &:hover,
+  &:active {
+    color: #ccc;
+  }
+`;
 
-const handleMouseLeave = () => {
-    setHoverValue(undefined)
-}
+const FeedbackContainer = styled.div` margin-top: 1rem;`;
 
-export default function StarRating(){
-    return <Container>
-        <h2>Did the conversation please you?</h2>
-        <Stars>
-            {stars.map((_, index) => {
-                return (
-                    <FaStar
-                        key={index}
-                        size={24}
-                        onClick={() => handleClick(index + 1)}
-                        onMouseOver={() => handleMouseOver(index + 1)}
-                        onMouseLeave={handleMouseLeave}
-                        color={(hoverValue || currentValue) > index ? colors.orange : colors.grey}
-                        style={{
-                            marginRight: 10,
-                            cursor: "pointer"
-                        }}
-                    />
-                )
-            })}
-        </Stars>
-        <Feedback placeholder={"What's your experience?"}/>
-        <SubmitButton>Submit</SubmitButton>
-    </Container>;
-}
+const TextArea = styled.textarea`width: 100%; padding: 0.5rem; font-size: 1rem; border-radius: 0.25rem; border: 1px solid #ccc;`;
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  `
-const Stars = styled.div`
-  display: flex;
-  flex-direction: row;
-    `
-const Feedback = styled.textarea`
-  border: 1px solid #a9a9a9;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 20px 0;
-  min-height: 100px;
-  width: 300px;
-`
 const SubmitButton = styled.button`
-  border: 1px solid #a9a9a9;
-  border-radius: 5px;
-  width: 300px;
-  padding: 10px;
-    `
+  background-color: #4CAF50;
+  color: white;
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #3e8e41;
+  }
+`;
+
+const StarRating = ({ maxStars = 5 }) => {
+    const [rating, setRating] = useState(0);
+    const [feedback, setFeedback] = useState('');
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(`Rating: ${rating} Feedback:${feedback}`);
+        setFeedback('');
+    }
+
+    return (
+        <>
+            <StarRatingContainer>
+                {Array.from({ length: maxStars }, (_, i) => (
+                    <Star key={i} onClick={() => setRating(i + 1)}>
+                        {i < rating ? '★' : '☆'}
+                    </Star>
+                ))}
+            </StarRatingContainer>
+            <FeedbackContainer>
+                <form onSubmit={handleSubmit}>
+                    <TextArea
+                        placeholder="Leave your feedback here..."
+                        value={feedback}
+                        onChange={(event) => setFeedback(event.target.value)}
+                    />
+                    <SubmitButton type="submit">Submit</SubmitButton>
+
+                </form>
+            </FeedbackContainer>
+        </>
+    );
+};
+
+export default StarRating;
