@@ -7,20 +7,14 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 
-@Data
 @Builder
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
-public class CreateUserRequest {
+@NoArgsConstructor
+public class SentMessage {
+    @NotBlank
+    private String username;
 
-    private String name;
-
-    private String lastName;
-
-    private String CompanyName;
-
-    private String email;
-
-    private String password;
-    private String role;
+    @NotBlank
+    private String content;
 }

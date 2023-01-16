@@ -1,7 +1,6 @@
 package com.code_of_duty_bas_chat_bot.business.impl;
 
-import com.code_of_duty_bas_chat_bot.domain.CreateUserRequest;
-import com.code_of_duty_bas_chat_bot.domain.CreateUserResponse;
+import com.code_of_duty_bas_chat_bot.domain.requests.CreateUserRequest;
 import com.code_of_duty_bas_chat_bot.repository.UserRepository;
 import com.code_of_duty_bas_chat_bot.repository.entity.UserEntity;
 import org.junit.jupiter.api.Test;

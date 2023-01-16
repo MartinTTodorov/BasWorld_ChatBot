@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import './App.css';
 import Greeter from "../Greeter";
+import Greeter2 from "../Greeter2";
 import { NavLink } from "react-router-dom";
 //import logo from './logo.svg';
 
@@ -62,7 +63,7 @@ const MainPage=()=>{
                     </div>
                 </div>
             </header>
-            <Greeter/>
+            <Greeter2/>
 
 
         </div>
