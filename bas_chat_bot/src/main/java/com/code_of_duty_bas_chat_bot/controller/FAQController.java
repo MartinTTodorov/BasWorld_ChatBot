@@ -33,6 +33,7 @@ public class FAQController {
         return ResponseEntity.ok().body(service.findByTopic(question).getAnswer());
     }
 
+
     @PostMapping
     public ResponseEntity<FAQ> getFAQ(@RequestParam(value = "question") String question){
         return  ResponseEntity.ok().body(service.findByQuestion(question));
