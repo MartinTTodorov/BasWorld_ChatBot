@@ -14,13 +14,18 @@ import java.util.List;
 public class ConversationServiceImpl implements ConversationService {
     private ConversationRepository conversation_repository;
 
+//    @Override
+//    public Conversation saveConversation(Conversation conversation) {
+//        if(conversation != null){
+//            return conversation_repository.save(conversation);
+//        }else{
+//         return null;
+//        }
+//    }
+
     @Override
     public Conversation saveConversation(Conversation conversation) {
-        if(conversation != null){
-            return conversation_repository.save(conversation);
-        }else{
-         return null;
-        }
+        return conversation_repository.save(conversation);
     }
 
     @Override

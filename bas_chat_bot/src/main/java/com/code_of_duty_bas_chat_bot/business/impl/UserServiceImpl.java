@@ -5,7 +5,7 @@ import com.code_of_duty_bas_chat_bot.business.exception.EmailAddressAlreadyExist
 import com.code_of_duty_bas_chat_bot.business.exception.EmailAddressNotFoundException;
 import com.code_of_duty_bas_chat_bot.business.exception.InvalidCredentialsException;
 import com.code_of_duty_bas_chat_bot.business.exception.UserNotFoundException;
-import com.code_of_duty_bas_chat_bot.domain.CreateUserRequest;
+import com.code_of_duty_bas_chat_bot.domain.requests.CreateUserRequest;
 import com.code_of_duty_bas_chat_bot.repository.UserRepository;
 import com.code_of_duty_bas_chat_bot.repository.entity.UserEntity;
 import lombok.AllArgsConstructor;

@@ -9,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@Data
 @RequiredArgsConstructor
 public class Conversation {
 
