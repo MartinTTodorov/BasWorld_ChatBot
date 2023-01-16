@@ -41,14 +41,12 @@ const navigateToRegisterPage = () => {
      
 //     };
     const handleSubmit = async(e)=>{
-        //e.preventDefault();
+        e.preventDefault();
 
         let res = login({email,password})
-        
-        navigate("/")
-        navigate(0)
-        // console.log(email);
-        // console.log(password);
+        console.log(email)
+         navigate("/")
+
 
       }
     
@@ -76,7 +74,7 @@ const navigateToRegisterPage = () => {
                 </div>
                 
                 <div className="button-container">
-                    <input type="submit" />
+                    <input  type="submit" />
                 </div>
             </form>
             <button className="formBtn"

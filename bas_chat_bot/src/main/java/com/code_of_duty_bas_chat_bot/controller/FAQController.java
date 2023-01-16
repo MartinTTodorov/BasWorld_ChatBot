@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/faq")
 @AllArgsConstructor
@@ -13,6 +15,17 @@ import org.springframework.web.bind.annotation.*;
 public class FAQController {
 
     private final FAQService service;
+
+
+    @GetMapping("/topics")
+    public ResponseEntity<List<String>> getTopics(){
+        return ResponseEntity.ok().body(service.getTopics());
+    }
+
+    @GetMapping("{topic}")
+    public ResponseEntity<List<FAQ>> getQuestions(@PathVariable(value = "topic") String topic){
+        return ResponseEntity.ok().body(service.getQuestions(topic));
+    }
 
     @PostMapping("/topic")
     public ResponseEntity<String> getAllFAQsByTopic(@RequestParam String question){

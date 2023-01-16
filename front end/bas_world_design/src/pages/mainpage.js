@@ -3,6 +3,7 @@ import React,{ useState } from "react";
 import logo from './logo.svg';
 import './App.css';
 import Greeter from "../Greeter";
+import Greeter2 from "../Greeter2";
 import { NavLink } from "react-router-dom";
 import login from "./login";
 
@@ -49,7 +50,7 @@ const MainPage=()=>{
                     </div>
                 </div>
             </header>
-            <Greeter/>
+            <Greeter2/>
 
 
         </div>

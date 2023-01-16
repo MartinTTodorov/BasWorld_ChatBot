@@ -7,6 +7,7 @@ import com.code_of_duty_bas_chat_bot.repository.FAQRepository;
 import com.code_of_duty_bas_chat_bot.repository.KeywordRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.tartarus.snowball.ext.PorterStemmer;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -19,6 +20,8 @@ public class FAQServiceImpl implements FAQService {
     private FAQRepository repository;
     private KeywordRepository repo;
     List<String> commonWords = new ArrayList<>();
+
+
 
 
     @Override
@@ -52,9 +55,21 @@ public class FAQServiceImpl implements FAQService {
     }
 
 
+    @Override
+    public List<FAQ> getQuestions(String topic){
+        return repository.findAllByTopicIn(List.of(topic));
+    }
+
+    @Override
+    public List<String> getTopics(){
+        return repository.getAllTopics();
+    }
+
 
     @Override
     public FAQ findByTopic(String question){
+
+        PorterStemmer stemmer = new PorterStemmer();
 
         FAQ faq1 = findByQuestion(question);
 
@@ -67,6 +82,8 @@ public class FAQServiceImpl implements FAQService {
         //List<String> filteredWords = cleanup(words);
 
         List<String> filteredWords = Arrays.stream(words).toList();
+
+
 
 
         List<FAQ> faqs = repository.findAllByTopicIn(filteredWords);
@@ -82,7 +99,16 @@ public class FAQServiceImpl implements FAQService {
             for (int i = 0; i < words.length; i++){
 
                 for (int j = 0; j < keywords.size(); j++){
-                    if(keywords.get(j).getKeyword().equals(filteredWords.get(i))){
+                    stemmer.setCurrent(keywords.get(j).getKeyword());
+                    stemmer.stem();
+                    String word1 = stemmer.getCurrent();
+                    stemmer.setCurrent(filteredWords.get(i));
+                    stemmer.stem();
+                    String word2 = stemmer.getCurrent();
+//                    if(keywords.get(j).getKeyword().equals(filteredWords.get(i))){
+//                        questionKeywords.add(keywords.get(j));
+//                    }
+                    if (word1.equals(word2)){
                         questionKeywords.add(keywords.get(j));
                     }
                 }
@@ -103,6 +129,12 @@ public class FAQServiceImpl implements FAQService {
                 .entrySet()
                 .stream()
                 .max(Comparator.comparing(Map.Entry::getValue));
+
+
+
+       if (faq.equals(Optional.empty())){
+           return FAQ.builder().answer("Can you please rephrase your question!").build();
+       }
 
         return faq.get().getKey();
     }

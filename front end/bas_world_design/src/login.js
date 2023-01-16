@@ -7,7 +7,7 @@ import jwt_decode from "jwt-decode";
 
 export default async function login({ email, password }) {
 
- 
+
   
   var qs = require("qs");
 
