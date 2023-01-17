@@ -8,6 +8,12 @@ export default function Greeter2() {
     const [display, setDisplay] = useState(false);
     const [name, setName] = useState(sessionStorage.getItem("userName"));
     const [topics, setTopics] = useState(['Account', 'Order']);
+    // this.state = {
+    //     topic: ''
+    // };
+
+
+
     //const [answer, setAnswer] = useState("");
 
 
@@ -23,7 +29,8 @@ export default function Greeter2() {
         sessionStorage.getItem("userName") == null ? setName("Guest") : setName(sessionStorage.getItem("userName"))
 
         getTopics()
-        console.log(topics)
+
+
     }, []);
 
     function loggedUser() {
@@ -84,8 +91,9 @@ export default function Greeter2() {
 
     function GetAnswer() {
         axios.post(`http://localhost:9091/faq/topic?question=${input}`).then(res => Tests2(res.data))
+        console.log(answer)
         return (
-            <div>{answer}</div>
+            <div className="answer">{answer}</div>
         )
     }
 
@@ -99,20 +107,21 @@ export default function Greeter2() {
         {
             id: '1',
             message: `Hello ${loggedUser()} ! My name is Bassy the chat bot! How can I be helpful today?.`,
-            trigger: 7,
+            trigger: "topic",
             //end: true
         },
         {
-            id: '7',
+            id: 'topic',
             options: [
-                {value: 1, label: 'Topic 1', trigger: 8},
-                {value: 2, label: 'Topic 2', trigger: 8},
-                {value: 3, label: 'Topic 3', trigger: 8},
+                {value: 'topic1', label: 'Topic 1', trigger: 8},
+                {value: 'topic2', label: 'Topic 2', trigger: 8},
+                {value: 'topic3', label: 'Topic 3', trigger: 8},
             ]
         },
         {
             id: '8',
             options: [
+
                 {value: 1, label: 'Question 1', trigger: 9},
                 {value: 2, label: 'Question 2', trigger: 9},
                 {value: 3, label: 'Question 3', trigger: 9},
@@ -170,7 +179,7 @@ export default function Greeter2() {
         },
         {
             id: '3',
-            component: (<GetAnswer/>),
+            component: <GetAnswer/>,
             //asMessage: true,
             //message: GetAnswer(),
             //message: "fuck",

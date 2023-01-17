@@ -15,6 +15,7 @@ function ChatComponent() {
   const [stompClient, setStompClient] = useState(null);
   const [chatMessages, setChatMessages] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const role = jwtDecode(sessionStorage.getItem("accessToken")).roles;
 
     function toggleChat() {
     setIsOpen(!isOpen);
@@ -34,11 +35,23 @@ function ChatComponent() {
   }, []);
 
   function sendMessage() {
-    const messageSend = {
-      username: `${username}`,
-      content,
-    };
-    stompClient.send('/app/hello', {}, JSON.stringify(messageSend));
+
+    if(role == "admin"){
+      const messageSend = {
+        username: `Administartor`,
+        content,
+      };
+      stompClient.send('/app/hello', {}, JSON.stringify(messageSend));
+    }
+    else{
+      const messageSend = {
+        username: `${username}`,
+        content,
+      };
+      stompClient.send('/app/hello', {}, JSON.stringify(messageSend));
+    }
+
+
   }
 
   function onMessageReceived(data) {
@@ -52,20 +65,21 @@ function ChatComponent() {
 
 
   return (
-    <div className="chat-conteiner">
+    <div className="chat-component">
       <div className="chat-section">
         <div className="chat-message"> Chat </div>
         <ul className="chat-messages">
           {chatMessages.map((chat, index) => (
+
             <li key={index}>
-              <div>{chat.username}: {chat.content}</div>
+              <div className="chat-message">{chat.username}: {chat.content}</div>
             </li>
           ))}
         </ul>
       </div>
       <div className="chat-input">
         <input onChange={(event) => setContent(event.target.value)} />
-        <button onClick={sendMessage}>♥</button>
+        <button className="chat-button"onClick={sendMessage}>Send</button>
       </div>
     </div>
 

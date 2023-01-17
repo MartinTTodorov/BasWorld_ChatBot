@@ -1,10 +1,13 @@
 import React from "react";
-import ChatComponent from "../Components/ChatComponent";
+// import ChatComponent from "../Components/ChatComponent";
 
+import ChatRoom from "../Components/ChatRoom";
+import ChatComponent from "../Components/ChatComponent";
 function LiveSupportPage(){
     return(
-        <div>
+        <div >
             <ChatComponent/>
+            {/*<ChatComponent/>*/}
         </div>
     )
 
