@@ -36,7 +36,7 @@ function ChatComponent() {
 
   function sendMessage() {
 
-    if(role == "admin"){
+    if(role != "admin"){
       const messageSend = {
         username: `Administartor`,
         content,
@@ -79,7 +79,7 @@ function ChatComponent() {
       </div>
       <div className="chat-input">
         <input onChange={(event) => setContent(event.target.value)} />
-        <button className="chat-button"onClick={sendMessage}>Send</button>
+        <button className="chat-button"onClick={sendMessage}>→</button>
       </div>
     </div>
 

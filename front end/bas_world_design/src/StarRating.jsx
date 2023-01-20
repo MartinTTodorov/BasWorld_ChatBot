@@ -33,6 +33,10 @@ const SubmitButton = styled.button`
   }
 `;
 
+
+  
+  
+
 const StarRating = ({ maxStars = 5 }) => {
     const [rating, setRating] = useState(0);
     const [feedback, setFeedback] = useState('');
@@ -41,6 +45,7 @@ const StarRating = ({ maxStars = 5 }) => {
         event.preventDefault();
         console.log(`Rating: ${rating} Feedback:${feedback}`);
         setFeedback('');
+        
     }
 
     return (

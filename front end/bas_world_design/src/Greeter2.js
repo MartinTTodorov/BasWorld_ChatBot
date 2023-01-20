@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import ChatBot from "react-simple-chatbot";
 import StarRating from "./StarRating";
+import StartLiveChatComponent from './Components/StartLiveChatComponent.js';
 
 export default function Greeter2() {
 
@@ -12,6 +13,8 @@ export default function Greeter2() {
     //     topic: ''
     // };
 
+    
+    
 
 
     //const [answer, setAnswer] = useState("");
@@ -108,28 +111,76 @@ export default function Greeter2() {
             id: '1',
             message: `Hello ${loggedUser()} ! My name is Bassy the chat bot! How can I be helpful today?.`,
             trigger: "topic",
-            //end: true
         },
         {
             id: 'topic',
             options: [
-                {value: 'topic1', label: 'Topic 1', trigger: 8},
-                {value: 'topic2', label: 'Topic 2', trigger: 8},
-                {value: 'topic3', label: 'Topic 3', trigger: 8},
+                {value: 'topic1', label: 'Account', trigger: "Q1"},
+                {value: 'topic2', label: 'Delivery', trigger: "Q2"},
+                {value: 'topic3', label: 'Bids', trigger: "Q3"},
             ]
         },
         {
-            id: '8',
+            id: 'Q1',
             options: [
 
-                {value: 1, label: 'Question 1', trigger: 9},
-                {value: 2, label: 'Question 2', trigger: 9},
-                {value: 3, label: 'Question 3', trigger: 9},
+                {value: 1, label: 'How can I reset my password?', trigger: 9},
+                {value: 2, label: 'Can I delete my account?', trigger: "a2"},
+                {value: 3, label: 'Can I create another account?', trigger: "a3"},
             ]
+            
+        },
+        {
+            id: 'Q2',
+            options: [
+
+                {value: 1, label: 'How long does the delivery take?', trigger: "a4"},
+                {value: 2, label: 'How much does the delivery cost?', trigger: "a5"},
+            ]
+            
+        },
+        {
+            id: 'Q3',
+            options: [
+
+                {value: 1, label: 'Can I cancel my active bid?', trigger: "a6"},
+                {value: 2, label: 'Can I change the pick-up date on my bid?', trigger: "a7"},
+            ]
+            
         },
         {
             id: 9,
-            message: "Answer",
+            message: "Go to your account settings ",
+            trigger: 10
+        },
+        {
+            id: "a2",
+            message: "Yes you can always delete your account",
+            trigger: 10
+        },
+        {
+            id: "a3",
+            message: "Yes you can, but it can not be with the same email. What you can do is also change the credentials of your current profile.",
+            trigger: 10
+        },
+        {
+            id: "a4",
+            message: "3-5 working days",
+            trigger: 10
+        },
+        {
+            id: "a5",
+            message: "Depends on the delivery address",
+            trigger: 10
+        },
+        {
+            id: "a6",
+            message: "Yes, as long as your bid has not been accepted.",
+            trigger: 10
+        },
+        {
+            id: "a7",
+            message: "Yes, if the order confirmation process has not been finished.",
             trigger: 10
         },
         {
@@ -144,30 +195,7 @@ export default function Greeter2() {
                 {value: 2, label: 'No', trigger: 4},
             ]
         },
-        // {
-        //     id: '2',
-        //     options: [
-        //
-        //
-        //         { value: 1, label: 'Number 1', trigger: 3},
-        //         { value: 2, label: 'Number 2', trigger: 3},
-        //         { value: 3, label: 'Number 3', trigger: 3},
-        //     ],
-        // },
-        // {
-        //     id: 3,
-        //     message: "hellou"
-        // }
-        // {
-        //     id: 2,
-        //     user: true,
-        //     trigger: '3',
-        // },
-        // {
-        //     id: '3',
-        //     message: 'hello',
-        //     trigger: '4',
-        // },
+        //Get user input
         {
             id: '2',
             user: true,
@@ -177,12 +205,10 @@ export default function Greeter2() {
             },
             trigger: '3',
         },
+        //Provide answer
         {
             id: '3',
             component: <GetAnswer/>,
-            //asMessage: true,
-            //message: GetAnswer(),
-            //message: "fuck",
             trigger: '4'
         },
         {
@@ -195,71 +221,22 @@ export default function Greeter2() {
             id: 5,
             options: [
                 {value: 1, label: 'Yes', trigger: '2'},
-                {value: 2, label: 'No', trigger: '6'}
+                {value: 2, label: 'No', trigger: '6'},
+                {value: 3, label: 'Live support', trigger: 'live support'},
             ]
         },
         {
+            id: 'live support',
+            component: (<StartLiveChatComponent/>),
+        },
+        {
             id: 6,
-            component: (<StarRating/>)
+            component: (<StarRating/>),
+            end: true,
         }
-        // {
-        //     id: '5',
-        //     user: true,
-        //     asMessage: true,
-        //     end: true
-        // }
-        // {
-        //   id: '2',
-        //   options: [
-        //     { value: 1, label: 'FAQ 1', trigger: '3' },
-        //     { value: 2, label: 'FAQ 2', trigger: '4' },
-        //     { value: 3, label: 'FAQ 3', trigger: '5' },
-        //     { value: 4, label: 'Neither', trigger: '6' },
-        //   ],
-        // },
-
-        // {
-        //   id: '3',
-        //   message: 'FAQ 1 answer!',
-        //   trigger: '8'
-        // },
-        // {
-        //   id: '4',
-        //   message: 'FAQ 2 answer!',
-        //   trigger: '8'
-        // },
-        // {
-        //   id: '5',
-        //   message: 'FAQ 3 answer!',
-        //     trigger: '8'
-        // },
-        // {
-        //     id: '6',
-        //     message: 'Please choose a topic!',
-        //     trigger: '7'
-
-        // },
-        // // {
-        // //     id: 'extra',
-        // //     options:[
-        // //         { value: 1, label: 'Yes', trigger: '2' },
-        // //         { value: 2, label: 'No', trigger: '10' },
-        // //     ],
-        // // }
     ]
 
-    // steps.push(
-    //     {
-    //         id: 2,
-    //         options: getOptions(),
-    //     },
-    //     {
-    //         id: 3,
-    //         message: "fuck u",
-    //
-    //     }
-    // )
-
+    
 
     return (
 

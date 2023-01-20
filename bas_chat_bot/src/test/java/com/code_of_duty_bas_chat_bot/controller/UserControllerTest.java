@@ -1,77 +1,50 @@
 package com.code_of_duty_bas_chat_bot.controller;
 
-import com.code_of_duty_bas_chat_bot.business.UserService;
-import com.code_of_duty_bas_chat_bot.domain.requests.CreateUserRequest;
-import com.code_of_duty_bas_chat_bot.repository.entity.UserEntity;
+import com.code_of_duty_bas_chat_bot.business.FAQService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import java.util.List;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.web.servlet.function.ServerResponse.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(UserController.class)
-class UserControllerTest {
+@WebMvcTest(FAQController.class)
+@AutoConfigureMockMvc(addFilters = false)
+class FAQControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private UserService userService;
-
+    private FAQService service;
 
     @Test
-    void createUser_shouldCreateAndReturn201_WhenRequestValid() throws Exception {
-        CreateUserRequest expectedUser = CreateUserRequest.builder()
-                .name("adnan")
-                .lastName("qusay")
-                .CompanyName("asml")
-                .email("adnan@gmail.com")
-                .password("adnan123")
-                .role("admin")
-                .build();
-        when(userService.createUser(expectedUser))
-                .thenReturn(UserEntity.builder().id(100L).name(expectedUser.getName()).lastName(expectedUser.getLastName()).CompanyName(expectedUser.getCompanyName()).email(expectedUser.getEmail()).password(expectedUser.getPassword()).role(expectedUser.getRole()).build());
+    void getTopics() throws Exception {
 
-        mockMvc.perform(post("/user/save").contentType(APPLICATION_JSON_VALUE)
-                .content("""
-                        {
-                        "name": "adnan",
-                        "lastName": "qusay",
-                        "companyName": "asml",
-                        "email": "adnan@gmail.com",
-                        "password": "adnan123"
-                        }
-                        """))
+        when(service.getTopics())
+                .thenReturn(List.of("Order","Account","Services"));
+
+        mockMvc.perform(get("/faq/topics"))
                 .andDo(print())
-                .andExpect(MockMvcResultMatchers.status().isCreated())
-                .andExpect(header().string("Content-Type",
-                        APPLICATION_JSON_VALUE))
+                .andExpect(status().isOk())
+                .andExpect(header().string("Content-Type", APPLICATION_JSON_VALUE))
                 .andExpect(content().json("""
-{"id": 100, 
-"name": "adnan",
-                        "lastName": "qusay",
-                        "companyName": "asml",
-                        "email": "adnan@gmail.com",
-                        "password": "adnan123"}
-"""));
-
-        verify(userService).createUser(expectedUser);
+                        ["Order", "Account","Services"]
+                        """));
+        verify(service).getTopics();
     }
 
-    @Test
-    void refreshToken() {
-    }
+
 }

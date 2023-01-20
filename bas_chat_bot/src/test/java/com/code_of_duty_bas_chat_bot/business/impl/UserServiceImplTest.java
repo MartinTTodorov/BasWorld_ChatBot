@@ -45,6 +45,8 @@ class UserServiceImplTest {
     void findByEmail() {
         UserEntity user = UserEntity.builder().name("radi").lastName("servet").CompanyName("i donno").email("rad@gmail.com").password("test123").role("admin").build();
 
+        when(userRepositoryMock.existsByEmail("rad@gmail.com")).thenReturn(true);
+
         when(userRepositoryMock.findByEmail("rad@gmail.com")).thenReturn(user);
 
         UserEntity expected = userService.findByEmail(user.getEmail());
@@ -56,16 +58,21 @@ class UserServiceImplTest {
 
     @Test
     void createUser_ShouldReturnUserWithAllFields() {
-        UserEntity user = UserEntity.builder().name("radi").lastName("servet").CompanyName("i donno").email("rad@gmail.com").password("test123").role("admin").build();
+        UserEntity userEncodedPass = UserEntity.builder().name("radi").lastName("servet").CompanyName("i donno").email("rad@gmail.com").password("EncodedPassword").role("admin").build();
 
-        when(userRepositoryMock.save(user)).thenReturn(user.toBuilder().build());
+        UserEntity userResponse = UserEntity.builder().id(1L).name("radi").lastName("servet").CompanyName("i donno").email("rad@gmail.com").password("EncodedPassword").role("admin").build();
 
-        CreateUserRequest request = CreateUserRequest.builder().name(user.getName()).lastName(user.getLastName()).CompanyName(user.getCompanyName()).email(user.getEmail()).password(user.getPassword()).role(user.getRole()).build();
+
+        when(userRepositoryMock.existsByEmail("rad@gmail.com")).thenReturn(false);
+        when(passwordEncoder.encode("test123")).thenReturn("EncodedPassword");
+        when(userRepositoryMock.save(userEncodedPass)).thenReturn(userResponse);
+
+        CreateUserRequest request = CreateUserRequest.builder().name("radi").lastName("servet").CompanyName("i donno").email("rad@gmail.com").password("test123").role("admin").build();
 
         UserEntity expectedUser = userService.createUser(request);
 
-        assertEquals(user, expectedUser);
+        assertEquals(userResponse, expectedUser);
 
-        verify(userRepositoryMock).save(user);
+        verify(userRepositoryMock).save(userEncodedPass);
     }
 }

@@ -6,29 +6,12 @@ import ChatComponent from "../Components/ChatComponent";
 
 function adminpage() {
 
-    // const [messages, setMessages] = useState([]);
-    // const [message, setMessage] = useState('');
+    const [showChat, setShowChat] = useState(false);
 
+    const toggleChat = () => {
+        setShowChat(!showChat);
+    }
 
-    // const fetchMessages = () => {
-    //     axios.get('http://localhost:8080/messages')
-    //     .then(response => {
-    //         setMessages(response.data.messages);
-    //     })
-    //     .catch(() => {
-    //         if (!messages)
-    //         return null;
-    //     })
-    // }
-
-    // function displayChat() {
-    //     setMessage(document.getElementById("message").style.display = "block")
-    // }
-   
-
-    // useEffect(() => {
-    //     fetchMessages()
-    // }, [])
 
 
 
@@ -41,9 +24,10 @@ function adminpage() {
             <aside>
                 <ul>
                     <li>
-                        <h1 className="textDecore">(Name of the customer)</h1>
-                        <p className="textDecore" id="message">Hello I need help with my order</p>
-                        <button className="formBtn" >Reply</button>
+                        <h1 className="textDecore">Rad@abv.bg</h1>
+                        <p className="textDecore" id="message">Support request</p>
+                        <button className="formBtn" onClick={toggleChat}>Reply</button>
+                        
                     </li>
 
                     
